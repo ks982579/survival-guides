@@ -39,7 +39,7 @@ A [mapping](https://docs.python.org/3/glossary.html#term-mapping) object where k
 
 Methods inherited from ```collections.abc.MutableMapping```
 ```python
-clear(self) -> None # Removes all iteams.
+clear(self) -> None # Removes all items.
 pop(self, key, default=<object object at 0x000001D390248160>) -> v # Remove and return (key, value) tuple; or raise KeyError.
 popitem(self) -> (k,v) # Remove and return some (key, value) tuple.
 update(self, other=(), /, **kwargs) -> None # 
