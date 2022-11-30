@@ -63,4 +63,10 @@ More examples in documentation. There are three types of numeric literals: integ
 
 ---
 
-We now move to [Data Models](https://docs.python.org/3/reference/datamodel.html#data-model). Every __object__ in Python has an _identity_, a _type_, and a _value_. 
+We now move to [Data Models](https://docs.python.org/3/reference/datamodel.html#data-model). Every __object__ in Python has an _identity_, a _type_, and a _value_. Think of the object's identity as its address in memory. 
+```python
+if obj1 is obj2:
+    ...
+id(obj1) -> int
+# returns integer representation of identity. 
+``` 
