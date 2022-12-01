@@ -60,4 +60,71 @@ Largest positive value is one less the above amount to include 0, and the smalle
 
 ### Inserting Data into a Table
 
-part 7
+After creating a table, we insert data into a table with the `INSERT INTO` keywords, followed by the name of the table and the columns we will insert data into.
+
+```SQL
+INSERT INTO cities (name, country, population, area)
+VALUES ('Tokyo', 'Japan', 38505000, 8223);
+```
+
+Then, as seen, we use the `VALUES` keyword, and list out the values to insert in **order**. Don't forget your semicolon.
+
+```SQL
+INSERT INTO cities (name, country, population, area)
+VALUES 
+	('Tokyo', 'Japan', 38505000, 8223)
+	('Shanghai', 'China', 22125000, 4015);
+```
+
+That is how you can add multiple records with one query. 
+
+He also made it a point that the text is enclosed in _single quotes_.
+
+### Retrieving Data with Select
+
+To pull information out of a table, we use the `SELECT` and `FROM` statements.
+
+```SQL
+SELECT * FROM cities;
+```
+
+The \* is a wild-card meaning "everything". With the above statement, we literally request everything from the 'cities' table. It's worth noting that the \* is requesting all of the columns in the table.
+
+```SQL
+SELECT name, country FROM cities;
+```
+
+We can request specific column names as well. You can change the order you request the information to also change the order it is received. You can also list the same column multiple times, and it will be returned multiple times. 
+
+### Calculated Columns
+
+With SQL, we can also _transform_ or _process_ data before we receive it. Consider finding the "population density" of our cities, which is $population/area$. 
+
+```SQL
+SELECT name, population / area FROM cities;
+```
+
+We are requesting the columns, but specifying that we want to perform an operation. Think of it like creating a new column that isn't in the database. The above will (should) give you the information requested, but the column name won't look right. 
+
+We can use many different operators:
+- add $\rightarrow +$
+- subtract $\rightarrow -$
+- multiply -> \*
+- divide -> /
+- exponent -> ^
+- square root -> |/
+- Absolute Value -> @
+- Remainder -> %
+
+There are probably even more, but these will be most common. 
+
+```SQL
+SELECT name, population / area AS population_density
+FROM cities;
+```
+
+The above uses the `AS` keyword to rename the column to something more human readable. 
+
+### String Operators and Functions
+
+part 12
