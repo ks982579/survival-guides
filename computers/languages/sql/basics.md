@@ -127,4 +127,52 @@ The above uses the `AS` keyword to rename the column to something more human rea
 
 ### String Operators and Functions
 
-part 12
+There are also operators and functions to manipulate strings
+- The `||` operator joins two strings together.
+- The `CONCAT()` function joins two strings.
+- The `LOWER()` gives a lower case string.
+-  `LENGTH()` gives number of character in a string.
+- `UPPER()` gives an upper case string. 
+
+```SQL
+SELECT name || ', ' || country AS location FROM cities;
+```
+
+That's not a great example, but can give strings like "Tokyo, Japan". Again, the single quotes are stressed. We also use the `AS` keyword to give the results a column name of "location". 
+
+We can do the same thing with a function.
+
+```SQL
+SELECT CONCAT(name, ', ', country) AS location FROM cities;
+```
+
+This is essentially the same results. 
+
+# Part 2 - Filtering Records
+
+### Filtering Rows with "Where"
+
+If we need to filter out records that do not fit a certain criteria, such as cities that are smaller than a particular area, we use the `WHERE` keyword. 
+
+```SQL
+SELECT name, area FROM cities WHERE area > 4000;
+```
+
+Write the bulk of the query to the left (or above) the `WHERE` statement, and then the filtering statement to the right. 
+
+We can discuss how a database management system, like PostgreSQL, exectutes a statement like this as it's not exaclty read left to right. The _actual steps_ taken are:
+1. Fetch the table (gets the data source).
+2. Apply the filter (criteria).
+3. Take only necessary columns. 
+
+That probably means we don't need to include the column we are filtering on because all of the columns are pulled for filtering first. You will need to understand the order of operations for writing more advanced queries. 
+
+The `WHERE` keyword allows us to filter down the set of results we get from a query. We can make use of many different operators in a `WHERE` statement, and some keywords.
+- Operators: =, <, >, <=, >=, <>, !=.
+- Keywords: `IN`, `BETWEEN`, `NOT IN`. 
+
+Most operators are (probably) self-explanitory. There are some neat options like seeing if a value is `IN` a list or not. Note that unlike most programming languages, we use the single equal sign as a comparison because it's not an assignment operator. The `!=` and `<>` are the same way of writing the same thing. 
+
+### Compound `WHERE` Clauses
+
+video 15
