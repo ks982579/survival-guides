@@ -608,7 +608,7 @@ First, let's talk about conditional CSS, so we can render our form a different c
 
 ### Lesson 202: Handling the "was touched" state
 
-Now, back to the blatent lie we tell ourselves that our form is valid from the start. It may seem harmless, but incorrect logic always has a way of creating issues at some point. Think of a `useEffect` that does something when the input is valid, like makes a call to the database to check if an email exists. That will now run as soon as the application starts because of the incorrect state. 
+Now, back to the blatant lie we tell ourselves that our form is valid from the start. It may seem harmless, but incorrect logic always has a way of creating issues at some point. Think of a `useEffect` that does something when the input is valid, like makes a call to the database to check if an email exists. That will now run as soon as the application starts because of the incorrect state. 
 
 We will create another state to determine if the user has entered any input. We can then create our own validation variable that is the value of both the `!enteredNameIsValid && enteredNameTouched`. Then, we can use that Boolean value throughout the rest of our component. 
 
@@ -654,3 +654,104 @@ Although it looks like more code, it reads better, is cleaner, and allows us to 
 
 ### Lesson 203: React to Lose Focus
 
+Where does our `onSubmit` check fail? A user can click into the form, enter some information, delete it all, and try to send an empty input. They aren't allowed to send empty input, but they aren't told about the error until after they click "Submit". A better UX might be to warn the user when they leave the input box, or `onBlur` for components. 
+
+We must add a new event listener function and bind the function to the `<input />` element. Inside the event handler function, we want to set the `wasTouched` state to true. We also want to add our validation logic, which is currently just ensuring the input isn't blank. 
+
+```js
+import React, { useRef, useState } from 'react';
+
+const SimpleInput = (props) => {
+...
+  const nameInputChangeHandler = event => {
+    setEnteredName(event.target.value);
+  }
+
+  const nameInputBlurHandler = event => {
+    setEnteredNameTouched(true);
+
+    if (enteredName.trim() === '') {
+      setEnteredNameIsValid(false);
+    }
+  }
+
+  const formSubmissionHandler = event => {
+...
+
+  return (
+    <form onSubmit={formSubmissionHandler}>
+      <div className={nameInputClasses}>
+        <label htmlFor='name'>Your Name</label>
+        <input type='text' id='name' onChange={nameInputChangeHandler} onBlur={nameInputBlurHandler}/>
+...
+```
+
+The above example cuts out some bits of the component. Basically, adding the `onBlur` now can show error messages. However, we might want to remove the error message once the user starts typing again. This is where we will combine lost focus validation with keystroke validation for the best UX.
+
+### Lesson 204: Refactoring and Deriving State
+
+We want to reuse our `onChange` event handler function to check validity of input on each keystroke. We currently have checks for if the input is invalid. However, this will call for checking if the input is valid, and only after being touched. 
+
+```js
+...
+  const nameInputChangeHandler = event => {
+    setEnteredName(event.target.value);
+
+    if (event.target.value.trim() !== '') {
+      setEnteredNameIsValid(true);
+    }
+  }
+...
+```
+
+You'll notice some subtle differences, such as checking the event value instead of the state value. This is because state changes may not be instantaneous, and we don't want to validate old state. We also didn't set the keystroke check to only check when `isTouched = true`. That's ok I guess. 
+
+This might be a better user experience, but our code isn't great. Our component is quite bloated. First, clean up an references to the `useRef` hook if you haven't already. 
+
+We can also remove the `enteredNameIsValid` state, and derive a variable whose value is determined by the input value `enteredName`. Because the `enteredName` state is tied to every keystroke, we can ensure the variable we create will also be updated on state changes. This means we can remove calls to change the `enteredNameIsValid` state, which was in every event handler. 
+
+We should also regroup our "inferred" states, the variables we are treating like state, which are derived from state, to the top. 
+
+The form submission handler is slightly different. We can't remove the check, but since we have already updated the state, we can just check the state and not update it. 
+
+We are also going to reset the state if, and only if, the form submits. But we also need to set the `isTouched = false` so errors don't populate after resetting the input. 
+
+```js
+import React, { useState } from 'react';
+
+const SimpleInput = (props) => {
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
+  const nameInputChangeHandler = event => {
+    setEnteredName(event.target.value);
+  }
+
+  const nameInputBlurHandler = event => {
+    setEnteredNameTouched(true);
+  }
+
+  const formSubmissionHandler = event => {
+    event.preventDefault();
+
+    setEnteredNameTouched(true);
+
+    if (!enteredNameIsValid) {
+      return;
+    }
+    console.log(enteredName);
+    setEnteredName('');
+    setEnteredNameTouched(false);
+  }
+
+  const nameInputClasses = nameInputIsInvalid ? 'form-control invalid' : 'form-control';
+
+  return (...
+```
+
+Now that the component has been refactored, it is a bit leaner. We also practiced working with **inferred state**, or **derived state**.  
+
+### Lesson 205: Managing the Overall Form Validity
