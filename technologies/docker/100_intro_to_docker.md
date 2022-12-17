@@ -1,5 +1,9 @@
 > "Docker & Kubernetes: The Practical Guide \[2023 Edition\]" by Academind, Maximilian Schwarzmuller
 
+## <span style="text-decoration: underline">Index</span>
+
+- [Chapter 1: Getting Started](#chapter-1-getting-started)
+
 # Intro to Docker
 
 ## Chapter 1: Getting Started
