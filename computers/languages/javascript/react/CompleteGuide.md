@@ -755,3 +755,314 @@ const SimpleInput = (props) => {
 Now that the component has been refactored, it is a bit leaner. We also practiced working with **inferred state**, or **derived state**.  
 
 ### Lesson 205: Managing the Overall Form Validity
+
+So far, we have been validating input from one input element. However, it is usually also beneficial to know whether the overall form, composed of many elements, is also valid. Usually, a form is only valid if all inputs are also valid. 
+
+How can we do this? We can create a `formIsValid` state, with an initial value of `false`. We want to update this state when an input is updated. We can actually accomplish this with the `useEffect` hook. And our `useEffect` hook will depend on the input component's validity state, or the _derived state_. 
+
+Basically, in the hook, we want to check all validity states, and set the overall form validity state accordingly. 
+
+```js
+import React, { useEffect, useState } from 'react';
+
+const SimpleInput = (props) => {
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
+  useEffect(() => {
+    if (enteredNameIsValid){
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  }, [enteredNameIsValid]);
+...
+```
+
+Now, we can actually use this state to disable the submit button when the form is not valid. 
+
+```js
+...
+  return (
+    <form onSubmit={formSubmissionHandler}>
+      <div className={nameInputClasses}>
+        <label htmlFor='name'>Your Name</label>
+        <input type='text' id='name' onChange={nameInputChangeHandler} onBlur={nameInputBlurHandler}/>
+        {nameInputIsInvalid && <p className='error-text'>Name must not be empty.</p>}
+      </div>
+      <div className="form-actions">
+        <button disabled={!formIsValid}>Submit</button>
+      </div>
+    </form>
+  );
+...
+```
+
+We can also apply some simple CSS so the button also appears different when disabled (this is not a CSS course):
+
+```css
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: #ccc;
+  color: #777;
+  border-color: #999;
+  cursor: not-allowed;
+}
+```
+
+It's a cool concept. The argument of restricting submission goes either way. Some people argue you should allow them to submit to get feedback on validity. 
+
+So, why did we use the `useEffect` hook? We technically don't need to do that, and it adds additional component re-evaluation cycles, which is not advantageous. We can actually create a `formIsValid` _derived state_. 
+
+```js
+const SimpleInput = (props) => {
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
+  let formIsValid = false;
+  
+  if (enteredNameIsValid){
+    formIsValid = true;
+  }
+...
+```
+
+That's a bit slimmer and simpler. 
+
+**Challenge**
+Add a second input to the form to fetch email address of user. Get the value and validate whether it's an email. The form should only be submittable if the inputs are valid. 
+
+I almost got it right. But the trick is to contain each input in it's own `<div/>` element. This allows you to apply the `input:focus` on the input element. Basically, I tried to put `<input/>` elements cascading, and then apply the `:focus` pseudo selector to the class, which didn't work. 
+
+Everything else is just like copying what is there for the name, except applying additional email validation logic. 
+
+```js
+import React, { useState } from 'react';
+
+const SimpleInput = (props) => {
+  // Name Input
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
+  // Email Input
+  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
+
+  const trimmedEmail = enteredEmail.trim()
+  const enteredEmailIsValid = trimmedEmail.includes('@', 1) && trimmedEmail.includes('.', 2);
+  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+
+  let formIsValid = false;
+  
+  if (enteredNameIsValid && enteredEmailIsValid){
+    formIsValid = true;
+  }
+
+  const nameInputChangeHandler = event => {
+    setEnteredName(event.target.value);
+  }
+
+  const nameInputBlurHandler = event => {
+    setEnteredNameTouched(true);
+  }
+
+  const emailInputChangeHandler = event => {
+    setEnteredEmail(event.target.value);
+  }
+
+  const emailInputBlurHandler = event => {
+    setEnteredEmailTouched(true);
+  }
+
+  const formSubmissionHandler = event => {
+    event.preventDefault();
+
+    setEnteredNameTouched(true);
+    setEnteredEmailTouched(true);
+
+    if (!enteredNameIsValid || !enteredEmailIsValid) {
+      return;
+    }
+    console.log(enteredName);
+    console.log(enteredEmail);
+    setEnteredName('');
+    setEnteredEmail('');
+    setEnteredNameTouched(false);
+    setEnteredEmailTouched(false);
+  }
+
+  const nameInputClasses = nameInputIsInvalid ? 'form-control invalid' : 'form-control';
+  const emailInputClasses = emailInputIsInvalid ? 'form-control invalid' : 'form-control';
+
+  return (
+    <form onSubmit={formSubmissionHandler}>
+      <div className={nameInputClasses}>
+        <label htmlFor='name'>Your Name</label>
+        <input type='text' id='name' onChange={nameInputChangeHandler} onBlur={nameInputBlurHandler} value={enteredName}/>
+        {nameInputIsInvalid && <p className='error-text'>Name must not be empty.</p>}
+      </div>
+      <div className={emailInputClasses}>
+        <label htmlFor='email'>Your Email</label>
+        <input type='email' id='email' onChange={emailInputChangeHandler} onBlur={emailInputBlurHandler} value={enteredEmail}/>
+        {emailInputIsInvalid && <p className='error-text'>Email must contain "@" and "."</p>}
+      </div>
+      <div className="form-actions">
+        <button disabled={!formIsValid}>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+export default SimpleInput;
+```
+
+You also need to adjust the form handler. It's a beefy component. You'd want to probably abstract some logic into another component or use a reducer or something. 
+
+### Lesson 206: Adding a Custom Input Hook
+
+We aren't duplicating the same words, but the logic is the same between the input elements. Image adding another `<input/>` element, it would be quite messy. So, we want to outsource some of the logic. 
+
+One idea is to create a separate `<Input/>` component. The only "tricky" bit is managing the overall form validity. This would most likely involve passing state around between components. 
+
+Another approach is to use a custom hook! It's more advanced, but also a bit more elegant in handling state. Start by adding `/app/src/hooks/use-input.js`. Of course, the file name in arbitrary, but this is suggested. Then, in the file, import React, create the component template, and export default. 
+
+In the hook, we want to manage state. But we want it to be flexible, being able to accept the validation logic as a callback. In the custom hook, start by creating the states for the entered value, and the element being touched. Then we create inferred state. 
+
+```js
+import React, { useState } from "react";
+
+const useInput = (validateValue) => {
+    const [enteredValue, setEnteredValue] = useState('');
+    const [isTouched, setIsTouched] = useState(false);
+
+    const valueIsValid = validateValue(enteredValue);
+    const hasError = !valueIsValid && isTouched;
+
+    const valueChangeHandler = (event) => {
+        setEnteredValue(event.target.value);
+    }
+
+    const valueInputBlurHandler = (event) => {
+        setIsTouched(true);
+    }
+
+	const reset = () => {
+		setEnteredValue('');
+		setIsTouched(false);
+	}
+
+    return {
+        value: enteredValue,
+        isValid: valueIsValid,
+        hasError,
+        valueChangeHandler,
+        valueInputBlurHandler,
+        reset
+    }
+};
+
+export default useInput;
+```
+
+In the above code example, you can see we accept a function into the hook's parameters to implement validation. We also even create event handler functions that interact with the hook's state, and return them in the object.  It's class. We return the parts that are needed in the parent component. We also create a handy `reset` method that can be called after the form is submitted. 
+
+> If anything seems off about the writing, the course was going back and forth between components instead of writing them all at once. 
+
+Now, back to the `<SimpleInput/>` component, we can import our custom hook and use it! Like any function, we can destructure the object returned to use throughout the component. We also need to create the validation function and pass that into the hook. Since our validation is simple, we can just create an anonymous inline function within the arguments of calling the custom hook. 
+
+```js
+import React, { useState } from 'react';
+import useInput from '../hooks/use-input';
+
+const SimpleInput = (props) => {
+  const { 
+    value: enteredName, 
+    isValid: enteredNameIsValid,
+    hasError: nameInputHasError, 
+    valueChangeHandler: nameInputChangeHandler, 
+    valueInputBlurHandler: nameInputBlurHandler,
+    reset: resetNameInput
+  } = useInput(value => value.trim() !== ''); 
+
+  // Email Input
+  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
+
+  const trimmedEmail = enteredEmail.trim()
+  const enteredEmailIsValid = trimmedEmail.includes('@', 1) && trimmedEmail.includes('.', 2);
+  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+
+  let formIsValid = false;
+
+  if (enteredNameIsValid && enteredEmailIsValid) {
+    formIsValid = true;
+  }
+
+  const emailInputChangeHandler = event => {
+    setEnteredEmail(event.target.value);
+  }
+
+  const emailInputBlurHandler = event => {
+    setEnteredEmailTouched(true);
+  }
+
+  const formSubmissionHandler = event => {
+    event.preventDefault();
+
+    setEnteredEmailTouched(true);
+
+    if (!enteredNameIsValid || !enteredEmailIsValid) {
+      return;
+    }
+    console.log(enteredName);
+    console.log(enteredEmail);
+    resetNameInput();
+    setEnteredEmail('');
+    setEnteredEmailTouched(false);
+  }
+
+  const nameInputClasses = nameInputHasError ? 'form-control invalid' : 'form-control';
+  const emailInputClasses = emailInputIsInvalid ? 'form-control invalid' : 'form-control';
+
+  return (
+    <form onSubmit={formSubmissionHandler}>
+      <div className={nameInputClasses}>
+        <label htmlFor='name'>Your Name</label>
+        <input type='text' id='name' onChange={nameInputChangeHandler} onBlur={nameInputBlurHandler} value={enteredName} />
+        {nameInputHasError && <p className='error-text'>Name must not be empty.</p>}
+      </div>
+      <div className={emailInputClasses}>
+        <label htmlFor='email'>Your Email</label>
+        <input type='email' id='email' onChange={emailInputChangeHandler} onBlur={emailInputBlurHandler} value={enteredEmail} />
+        {emailInputIsInvalid && <p className='error-text'>Email must contain "@" and "."</p>}
+      </div>
+      <div className="form-actions">
+        <button disabled={!formIsValid}>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+export default SimpleInput;
+
+```
+
+Since we have the custom hook, we can remove creating state inside the component. We can also remove the functions to set state since it's in the custom hooks. If you changed any names when destructuring, ensure they are correct when called. We can swap out the `isInvalid` with the `hasError`, again, just additional confusion. 
+
+We also have to go in to the `formSubmissionHandler` and change where it alters state. We will also call the `reset` method, which we aliased to `resetNameHandler()` to make more specific. 
+
+Currently, we only changed the name input and left the email input alone. If the changes are actually implemented correctly, you won't have to make any changes to the JSX. Now, let's use our new custom hook to reduce the email input logic.
+
+### Lesson 207: Re-Using the Custom Hook
+
