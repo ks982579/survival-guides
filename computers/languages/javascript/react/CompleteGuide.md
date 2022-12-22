@@ -1066,3 +1066,208 @@ Currently, we only changed the name input and left the email input alone. If the
 
 ### Lesson 207: Re-Using the Custom Hook
 
+Using the custom hook for the email. Just like the name value. After all of the updates, we actually can remove the `useState` import because all of the state is handled in the custom hook. 
+
+```js
+import React from 'react';
+import useInput from '../hooks/use-input';
+
+const SimpleInput = (props) => {
+  const { 
+    value: enteredName, 
+    isValid: enteredNameIsValid,
+    hasError: nameInputHasError, 
+    valueChangeHandler: nameInputChangeHandler, 
+    valueInputBlurHandler: nameInputBlurHandler,
+    reset: resetNameInput
+  } = useInput(value => value.trim() !== ''); 
+
+  const { 
+    value: enteredEmail, 
+    isValid: enteredEmailIsValid,
+    hasError: emailInputHasError, 
+    valueChangeHandler: emailInputChangeHandler, 
+    valueInputBlurHandler: emailInputBlurHandler,
+    reset: resetEmailInput
+  } = useInput(value => value.includes("@", 1) && value.includes('.', 2)); 
+
+  let formIsValid = false;
+
+  if (enteredNameIsValid && enteredEmailIsValid) {
+    formIsValid = true;
+  }
+
+  const formSubmissionHandler = event => {
+    event.preventDefault();
+
+    setEnteredEmailTouched(true);
+
+    if (!enteredNameIsValid || !enteredEmailIsValid) {
+      return;
+    }
+    console.log(enteredName);
+    console.log(enteredEmail);
+    resetNameInput();
+    resetEmailInput();
+  }
+
+  const nameInputClasses = nameInputHasError ? 'form-control invalid' : 'form-control';
+  const emailInputClasses = emailInputHasError ? 'form-control invalid' : 'form-control';
+
+  return (
+    <form onSubmit={formSubmissionHandler}>
+      <div className={nameInputClasses}>
+        <label htmlFor='name'>Your Name</label>
+        <input type='text' id='name' onChange={nameInputChangeHandler} onBlur={nameInputBlurHandler} value={enteredName} />
+        {nameInputHasError && <p className='error-text'>Name must not be empty.</p>}
+      </div>
+      <div className={emailInputClasses}>
+        <label htmlFor='email'>Your Email</label>
+        <input type='email' id='email' onChange={emailInputChangeHandler} onBlur={emailInputBlurHandler} value={enteredEmail} />
+        {emailInputHasError && <p className='error-text'>Email must contain "@" and "."</p>}
+      </div>
+      <div className="form-actions">
+        <button disabled={!formIsValid}>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+export default SimpleInput;
+```
+
+### Lesson 208: A Challenge for you
+
+We are now going to work with the `<BasicForm/>` component, which means swapping it in, in the `<App/>` component. 
+
+This is the `<BasicForm/>` in its current state:
+
+```js
+import React from "react";
+
+const BasicForm = (props) => {
+  return (
+    <form>
+      <div className='control-group'>
+        <div className='form-control'>
+          <label htmlFor='name'>First Name</label>
+          <input type='text' id='name' />
+        </div>
+        <div className='form-control'>
+          <label htmlFor='name'>Last Name</label>
+          <input type='text' id='name' />
+        </div>
+      </div>
+      <div className='form-control'>
+        <label htmlFor='name'>E-Mail Address</label>
+        <input type='text' id='name' />
+      </div>
+      <div className='form-actions'>
+        <button>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+export default BasicForm;
+```
+
+It has 3 inputs, is all JSX, and has no validation currently. It's a good time to try building the custom hook yourself and putting it into this component. 
+
+### Lesson 209: Applying Custom Hooks to a New Form. 
+
+This lesson will not build up the hook again. Any questions, please refer to the notes in the previous lessons. 
+
+The lesson just covers how to use the custom hook again in a new form. Good to see such reusable code. Basically, once we have to custom hook, we instantiate its values, and then bind them to the JSX. Other things to do are to add styling by adding or removing CSS classes based on validity, add error messages, and disable the submit button. To disable the "submit" button, we need the overall form validity. 
+
+Also, don't forget about the form submission handler! You need to `submitEvent.preventDefault();` so the page won't refresh. 
+
+```js
+import React from "react";
+import useInput from "../hooks/use-input";
+
+const isNotEmpty = value => value.trim() !== '';
+const isEmail = value => value.trim().includes('@');
+
+const BasicForm = (props) => {
+  const {
+    value: firstNameValue,
+    isValid: firstNameIsValid,
+    hasError: firstNameHasError,
+    valueChangeHandler: firstNameChangeHandler,
+    inputBlurHandler: firstNameBlurHandler,
+    reset: resetFirstName,
+  } = useInput(isNotEmpty);
+  const {
+    value: lastNameValue,
+    isValid: lastNameIsValid,
+    hasError: lastNameHasError,
+    valueChangeHandler: lastNameChangeHandler,
+    inputBlurHandler: lastNameBlurHandler,
+    reset: resetLastName,
+  } = useInput(isNotEmpty);
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput(isEmail);
+
+  const firstNameClass = firstNameHasError ? 'form-control invalid' : 'form-control';
+  const lastNameClass = lastNameHasError ? 'form-control invalid' : 'form-control';
+  const emailClass = emailHasError ? 'form-control invalid' : 'form-control';
+
+  let formIsValid = false;
+
+  if (firstNameIsValid && lastNameIsValid && emailIsValid) {
+    formIsValid = true;
+  }
+
+  const submitHandler = event => {
+    event.preventDefault();
+
+    if (!formIsValid) {
+      // user shouldn't get this far w/disabled submit button anyway. 
+      return;
+    }
+    console.log("Submitted");
+    console.log(firstNameValue, lastNameValue, emailValue);
+    resetFirstName();
+    resetLastName();
+    resetEmail();
+  }
+
+  return (
+    <form onSubmit={submitHandler}>
+      <div className='control-group'>
+        <div className={firstNameClass}>
+          <label htmlFor='name'>First Name</label>
+          <input type='text' id='name' value={firstNameValue} onChange={firstNameChangeHandler} onBlur={firstNameBlurHandler}/>
+          {firstNameHasError && <p className="error-text">Please enter a first name.</p>}
+        </div>
+        <div className={lastNameClass}>
+          <label htmlFor='name'>Last Name</label>
+          <input type='text' id='name' value={lastNameValue} onChange={lastNameChangeHandler} onBlur={lastNameBlurHandler}/>
+          {lastNameHasError && <p className="error-text">Please enter a last name.</p>}
+        </div>
+      </div>
+      <div className={emailClass}>
+        <label htmlFor='name'>E-Mail Address</label>
+        <input type='text' id='name' value={emailValue} onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
+        {emailHasError && <p className="error-text">Please enter a valid email address.</p>}
+      </div>
+      <div className='form-actions'>
+        <button disabled={!formIsValid}>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+export default BasicForm;
+```
+
+That is a lot to look over, but is just an example from all we have covered so far. 
+
+### Lesson 210: Summary
