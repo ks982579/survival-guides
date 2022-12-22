@@ -337,3 +337,26 @@ fn main() {
 [@here](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html#variable-scope)
 
 The **scope** is the range in a program in which the variable is valid. The variable declared as `s` is a string literal. It has two main points of time, when it is declared and brought into scope, and when it goes out of scope. Apparently this is where we can introduce a `String` type. 
+
+### The `String` Type
+
+The types previously covered (in Chapter 3) are have known size at compile time, and can be stored on the _stack_ and popped off the stack when their scope is over. They are typically trivial to copy and make new, independent instance if another part of code needs to use the same value in a different scope. However, we need to look at data stored on the heap.
+
+Although we will discuss `String` more in Chapter 8, we can go over the bits that relate to _ownership_ now. The string literals, hardcoded into the program, are not suitable for every situation because they are immutable. Also, not every string value can be known during compile, before we run the code. And that is why there is also the `String` type. 
+
+The `String` type manages data allocated on the _heap_, and is able to store an amount of text that is unknown to the user at compile time. You can create a `String` from a literal with the `from` function:
+
+```rust
+fn main() {
+	let s = String::from("Hello");
+	s.push_str(", world!");
+	println!("{}", s);
+}
+```
+
+Note, the double colon (double-colon) `::` operator allows us to namespace this particular `from` function under the `String` type, rather than using some sort of name like `string_from`. More on that syntax in Chapter 5, and namespacing in Chapter 7.
+
+Also, this string type is mutable, as can be seen in the above example. So, why can a `String` be mutated? 
+
+[Memory and Allocation](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html#memory-and-allocation)
+
