@@ -1,0 +1,58 @@
+There are so many different languages out there. Here's a wonderful article from [simplilearn.com](https://www.simplilearn.com/best-programming-languages-start-learning-today-article) regarding a few. 
+
+- Ada
+	- [ada-lang.io](https://ada-lang.io/)
+	- [adacore.com](https://www.adacore.com/)
+	- Package manager is "Alire".
+- BASIC
+- C
+- C++
+- C#
+- COBOL
+- Crystal
+	- [crystal-lang.org](https://crystal-lang.org/)
+	- Inspired by Ruby, with a lower learning curve. 
+- Elixer
+	- Package manager is "mix"
+	- does not use loops, must use recursion. 
+- Fortran
+- Go
+- Haskell
+	- [Haskell.org](https://www.haskell.org/)
+	- "An advanced, purely functional programming language."
+	- Package manager is cabal. 
+	- No loops
+- Java
+- JavaScript
+- Julia
+	- Similar to Python but better performance. 
+- Kotlin
+- Lisp
+- Lua
+	- [lua.org](https://www.lua.org/)
+	- A lightweight, embeddable scripting language. 
+	- Keywords define scope. 
+- MatLab
+- Modula, Modula2, Modula3
+	- [Modula3.org](http://www.modula3.org/)
+- Nim
+	- [nim-lang.org](https://nim-lang.org/)
+	- Statically typed, compiled, systems programming language. 
+	- Customizable memory management with destructors and move semantics. 
+	- package manager is "nimble".
+- Pascal
+- Perl
+- PHP
+- Python
+- R
+- Ruby
+- Rust
+	- Memory safety, performance
+	- Package manager is "cargo". 
+- Scala
+- SQL
+- Swift
+- TypeScript
+- Zig
+	- [ZigLang.org](https://ziglang.org/)
+	- Does not check memory safety. 
