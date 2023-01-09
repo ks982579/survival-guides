@@ -1271,3 +1271,155 @@ export default BasicForm;
 That is a lot to look over, but is just an example from all we have covered so far. 
 
 ### Lesson 210: Summary
+
+[Creating a Custom useForm Hook](https://academind.com/tutorials/reactjs-a-custom-useform-hook) is a lengthy article about creating a custom hook to validate form inputs. It also returns input elements that you can put into your JSX, making it easy to integrate and reuse in a project. 
+
+There are also 3rd party libraries, one such library being [formik](https://formik.org/), "build forms in React, without the tears." It uses more components and patterns instead of custom hooks. 
+
+### Lesson 211: Bonus - Using useReducer()
+
+We learned that using the `useReducer` hook is good if you need more state management power, have related pieces of state/data, or have more complex state updates, which probably constitutes needing more power. 
+
+In our example, we don't really have a good example of needing the `useReducer` hook. However, it could be good practice to include it in our custom hook.
+
+```JS
+import { useReducer } from 'react';
+
+const initialInputState = {
+	value: '',
+	isTouched: false
+}
+
+const inputStateReducer = (state, action) => {
+	if (action.type === 'INPUT'){
+		return {
+			...state,
+			value: action.value,
+		}
+	}
+	...
+	return initialInputState;
+}
+
+const useInput = (validateValue) => {
+	const [inputState, dispatch] = useReducer(inputStateReducer, initialInputState);
+	...
+}
+```
+
+Above is the beginning to get started. You must import the hook and then create the "reducer function", which takes in a state snapshot and an action. We also typically create an initial state object, which I believe helps to setup the reducer in VS code. The `useReducer` itself will take in the reducer function and the initial state, and return the state and a dispatch function. 
+
+When calling the dispatch function, we typically pass in an object for the action which includes a type and a payload. 
+
+The rest of the actions and integration can be an exercise. 
+
+### Lesson 212: Module Resources
+
+Nothing new
+
+## Section 17: Practice Project - Adding HTTP & Forms to the food order app
+
+### Lesson 213: Module Introduction
+
+We are looking to apply what we learned. We will want to add a checkout form, submit that data to a server / backend, we want to validate information, and we need to fetch meals data. 
+
+The plan is to use Firebase again for the backend. And for the rules, you'll want the "read" and "write" set to true. 
+
+### Lesson 214: Moving "Meals" data to the Backend
+
+Literally just putting data into Firebase, almost like a JSON format. 
+
+### Lesson 215: Fetching Meals via HTTP
+
+One idea is to create a custom hook that utilizes the `fetch()` function, or utilize a 3rd party package. If you are writing your own, you'll probably want to use the `useEffect()` hook. 
+
+Remember that `fetch()` returns a promise. Either use the `then()` method or the `async` and `await` keywords. If going the latter route, we don't want the actual function passed into `useEffect` to be asynchronous because of its return being a clean up. If you make it async, it will return a promise, which cannot be a clean up function. Instead, you can create another asynchronous function inside the `useEffect` hook, and call it. Basically, create and execute an IIFy. 
+
+You can create and handle loading and error states for the data. 
+
+### Lesson 216: Handling the Loading State
+
+We might want to show error and loading states. Since we have many states, it might be handy to use the `useReducer` hook. 
+
+One consideration is when do we set the `isLoading` state to true? You can initially set it to false, and then set it to true inside of the `useEffect` hook, but then that will trigger another iteration of loading components. If we intend loading to happen instantly, we can set the state to true from the start. 
+
+However, if the component doesn't initiate loading by mounting, you might wait for an event, like submitting information, to initiate a loading state. Don't forget to set loading to false in the end.
+
+### Lesson 217: Handling Errors
+
+We should also handle errors. For example, if you fetch something and run into an error, you might get stuck on the loading screen. More of a UI theory concept, but it's a bad user experience because they wouldn't know what happened. 
+
+You can have a generic "error" state, or you can make specific states for specific errors. Or better yet, `useReducer` can be used for more complex states. 
+
+I do like how JavaScript has an `response.ok` boolean property that we can check. However, it may tell us the response is okay even if the status code is 404 or something.
+
+```js
+	useEffect(() => {
+		const fetchData = async () => {
+			const response = await fetch('https://getdata.com/api/');
+
+			if (!response.ok){
+				throw new Error('Something Went Wrong!');
+			}
+		}
+	})
+```
+
+An advantage is that we can catch this error if something goes wrong with a `try-catch` block. That can be where you set "loading" to false, and our "error" to true. You can extract the `error.message` from our error object if you want to grab what we throw. 
+
+The code above actually has a huge problem though, and that is the async function returns a promise. The try-catch block will therefore see a promise instead of an error. The "promise way" of handling errors is to use the `promise.catch((error)=> {})` method.
+
+```js
+...
+	fetchData().catch(error => {
+		setIsLoading(false);
+		setHttpError(error.message);
+	});
+...
+```
+
+### Lesson 218: Adding A Checkout Form
+
+Clicking the order button should expand the modal to a form for entering information. 
+
+### Lesson 219: Reading Form Values
+
+Adding some styling, a scrollable form in a modal. 
+
+We can then use the `useRef` hook to get values from the form. Remember that you setup a ref by invoking it. Then, you use the special `<input ref={refName} />` "ref" prop to sync/link the ref to a component. And when you need the value stored in your "ref", you access the `refName.current.value` property. 
+
+### Lesson 220: Adding Form Validation
+
+You're validation logic can be more in-depth, but we will check values are not empty. Then we check if the form is valid or not as a whole. 
+
+You'll see how cumbersome working with input-is-valid and input-is-touched states can be when working with large forms. It is a lot of state to manage in one component, arguably not best practices. 
+
+The instructor likes to use inline ternary operators for setting CSS classes. 
+
+### Lesson 221: Submitting and Sending Cart Data
+
+For this example, we kind of have two forms, one with the user information and the other with their order/cart. That means we need to pass the user data to the cart component, and then send the complete request from there. 
+
+Note: on the server, we shouldn't trust data you get from a client. There's an [Academind.com](https://academind.com/tutorials/hide-javascript-code) article, which I think was mentioned previously, which covers how JavaScript code is not hidden from the user. That means they can manipulate your validation be sending to the server. 
+
+Always validation information on the server as well as on the front-end. However, this is a front-end course, so we will leave it there. 
+
+### Lesson 222: Adding Better User Feedback
+
+Just updating user feedback and such. We can create JSX variables outside of the return statement, and then use ternary operations to conditionally render JSX based on state. 
+
+And since the cart stores orders in context, we need to create an action in the context to clear the cart. 
+
+### Lesson 223: Summary
+
+This section was just updating the food order app for practice. 
+
+### Lesson 224: Module Resources
+
+Ok
+
+## Section 18: Diving into Redux (An Alternative to the Context API)
+
+### Lesson 225: Module Introduction
+
+We have covered enough to now dive into the very popular 3rd party library called **Redux**, which is used for managing app-wide state like context. We will discuss what is Redux and why would we need to use it. Then, we can diver into the basics and using it with React. And then, we can look at **Redux Toolkit**, which simplifies working with Redux. 
