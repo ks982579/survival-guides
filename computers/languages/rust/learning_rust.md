@@ -358,5 +358,60 @@ Note, the double colon (double-colon) `::` operator allows us to namespace this 
 
 Also, this string type is mutable, as can be seen in the above example. So, why can a `String` be mutated? 
 
-[Memory and Allocation](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html#memory-and-allocation)
+#### Memory and Allocation
+
+For the `String` type, we need to allocate an amount of memory on the heap to support a mutable, growable piece of text. When we call `String::from` its implementation requests the memory it needs. And the memory is 'returned' once the variable goes out of scope. When a variable goes out of scope, Rust calls a special function called `drop`. 
+
+In **C++** the pattern of deallocating resources at the end of an item's lifetime is called _Resource Acquisition Is Initialization (RAII)_. 
+
+Consider the following:
+
+```Rust
+let x = 5;
+let y = x;
+```
+
+First, we bind the value 5 to the variable `x`. Then, we copy the value 5 from `x` to `y`. Both variables hold simple values with known, fixed size, pushed onto the _stack_. 
+
+Now consider:
+
+```Rust
+let s1 = String::from("hello");
+let s2 = s1;
+```
+
+The same does not occur. A `String` is made of 3 parts, a pointer to memory that holds the string, a length, and a capacity. Those parts are stored on the _stack_. The _heap_ holds the contents. The length is the memory in bytes of the contents, and the capacity is the amount, in bytes, received from the allocator. When we assign variables like above, we copy the pointer, but not the actual data on the _heap_. 
+
+This can create an issue when both `s1` and `s2` try to free up the same memory. This is called a _double free error_, which is a memory safety bug. Freeing up memory twice can lead to memory corruption, and potential security vulnerabilities. However, Rust will consider `s1` as no longer valid once `s2` is declared. Thus nothing needs to be freed up, but you can no longer use the `s1` variable. 
+
+Rust does not use the term _shallow copy_ or _deep copy_, but calls this a _move_, because the first variable is invalidated. This also implies Rust will never automatically create "deep" copies of your data. So, any automatic copying can be assumed to be inexpensive in terms of runtime performance. 
+
+#### Cloning
+
+If you need a _deep copy_ of _heap_ data, we can use a common method called `clone`. 
+
+```Rust
+let s1 = String::from("hello");
+let s2 = s1.clone();
+
+println!("s1 = {}, s2 = {}", s1, s2);
+```
+
+You don't need to explicitly call `clone()` on basic data types because they are quick and easy to make, and already stored on the _stack_. Copying a pointer is just as easy as copying the value. 
+
+Rust has special annotation called the `Copy` trait for types stored on the stack. More on traits in Chapter 10. Rust won't annotate a type with `Copy`, if any of its parts have implemented the `Drop` trait. 
+
+#### Ownership and Functions
+
+Passing a variable to a function will move or copy, just like assignment. So, if we pass a variable into a function, we cannot call it again after because when the function's scope ends, it drops the variable. 
+
+#### Return Values and Scope
+
+Returning values can also transfer ownership. Think of it like assigning a value. 
+
+What if we want to let a function use a value but not take ownership?  Having Rust drop values taken in by a function can cause issues, but functions can return multiple values using a tuple. But it's still not great. However, Rust has a feature for using a value without transferring ownership, called _references_. 
+
+### References and Borrowing
+
+[References and Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#references-and-borrowing)
 
