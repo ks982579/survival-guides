@@ -1423,3 +1423,40 @@ Ok
 ### Lesson 225: Module Introduction
 
 We have covered enough to now dive into the very popular 3rd party library called **Redux**, which is used for managing app-wide state like context. We will discuss what is Redux and why would we need to use it. Then, we can diver into the basics and using it with React. And then, we can look at **Redux Toolkit**, which simplifies working with Redux. 
+
+### Lesson 226: Another Look at State in React Apps
+
+[Redux](https://redux.js.org/) is a state management system for cross-component or app-wide state. It helps us manage state across component or even the entire app. It might help if we break our state into different groups:
+- Local State: State that belongs to a single component. Typically, it can be managed with `useState` or `useReducer`. 
+- Cross-Component State: State that affects multiple components, like a button that opens or closes a modal overlay. We can also use the aforementioned hooks will techniques like "prop chains" or "prop drilling." Passing props around.
+- App-Wide State: State that affects the entire app (most/all components). Good example is user authentication. A logged in user will change an app. We can also manage this with the state hooks and "prop chains" or "prop drilling". 
+
+Since the "prop chain" technique can get complecated, we also learned about using **context** to manage component-wide "behind-the-scenes" state storage. Redux is a solution to the same problem, it helps manage cross-component and app-wide state. 
+
+Naturally, we would ask why would we need Redux when we already have React Context?
+
+### Lesson 227: Redux vs. React Context
+
+Redux is a state management system for cross-component or app-wide state. You don't have to choose between Redux and React Context, you can use both in an application. You could manage app-wide states with Redux, and some important cross-component states with React Context. 
+
+React Context has some potential disadvantages:
+- Setup and management of state can become quite complex. Typically not an issue for small to medium sized applications. However, with large applications, you can end up with many context providers, which can result in "deeply nested" JSX components. And if you try to manage it all with just one large context provider, that can become difficult to manage as well. 
+- Performance can also be an issue if managing the wrong kinds of state. A member from the React team in Dec 2018 stated React Context is good for data that doesn't change often. It isn't a replacement for all flux-like state propagation.
+
+Redux is a flux-like state management library. 
+
+### Lesson 228: How Redux Works
+
+Redux is all about having one central data store in your application. That means all kinds of state is stored in the same place, from user authentication, to inputs and such. It sounds unmaintainable, but we don't need to manage the whole store. 
+
+When a component needs data from the store it sets up a **subscription**. When state changes, the store will notify components with a subscription. And if a component requires data, they get a slice of the store. 
+
+So, how do we change and add data to the store? An important rule to note is that components **never** directly manipulate the store's data. To change data in the store we use **Reducer Functions**. To be clear, these reducer functions have nothing to do with the `useReducer` hook. A "reducer function" is actually a general concept of a function that takes input and transforms (or reduces) to a simpler output. For example, taking in a list of numbers and reducing it to an average value. 
+
+To actually change data in the store, components will dispatch **actions**. It will basically be an object that describes the operation the reducer should perform. The reducer function will read the action and perform the operation. 
+
+### Lesson 229: Redux createStore() is (not) deprecated.
+
+If your IDE complains about using `createStore()` with a deprecation warning, you can ignore it. It is recommended to use the **Redux Toolkit** package to create a Redux store (which will be covered later). However, learning how to use Redux stand-alone provides crucial knowledge of how the system works. 
+
+### Lesson 230: Exploring the Core Redux Concepts.
