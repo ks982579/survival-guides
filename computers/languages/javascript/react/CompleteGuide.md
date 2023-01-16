@@ -1460,3 +1460,54 @@ To actually change data in the store, components will dispatch **actions**. It w
 If your IDE complains about using `createStore()` with a deprecation warning, you can ignore it. It is recommended to use the **Redux Toolkit** package to create a Redux store (which will be covered later). However, learning how to use Redux stand-alone provides crucial knowledge of how the system works. 
 
 ### Lesson 230: Exploring the Core Redux Concepts.
+
+We don't need a React App to learn about Redux, you can actually use a regular JS file, and Node.js. We create a file called "/redux-demo.js". Then, run the following command:
+
+```bash
+npm init -y
+```
+
+The `-y` answers the questions npm would ask for you. You will basically get a "/package.json" file with some filled in things. It's not that interesting but needed to install 3rd party packages like Redux. Now run the following:
+
+```bash
+npm install redux
+```
+
+That will install Redux into this project, updating the "/package.json" file and creating a "/node_modules" directory with dependencies and packages. 
+
+Back to the "/redux-demo.js" file, we must import Redux. But since we will be running this in Node.js, the import syntax is slightly different. We also need to create a store and a reducer function to make changes to the store. We will also need an action and any other code that will setup a subscription to this store. 
+
+```js
+const redux = require('redux');
+
+//reducer function
+const counterReducer = (state, action) => {
+    return {
+        counter: state.counter + 1
+    };
+};
+
+// creating store
+const store = redux.createStore(counterReducer);
+
+// Subscription
+const counterSubscriber = () => {
+    const latestState = store.getState();
+    console.log(latestState);
+};
+
+// Tell store there is subscriber
+store.subscribe(counterSubscriber);
+```
+
+We start by creating a store. You can use the `redux.createStore()` method, which VSCode will tell you is deprecated and you should use the Redux-toolkit `configureStore()`. 
+
+We need to create a reducer function and pass it into the `createStore()` method. The reducer function will be responsible for creating a new state snapshot whenever an action reaches it. And when we run the code for the first time, the reducer will be executed with a default action to create an initial state. 
+
+Although a reducer function is just a standard JavaScript function, it will be called by the Redux library and therefore receive 2 arguments. So, we must include parameters to take in the **old state**, and the **dispatch action**. The reducer function must always return a **new state object**. The reducer function must be a pure function, the same inputs lead to the same output, no side effects in the function. Don't have a reducer function handle HTTP requests or reach out to local storage. 
+
+Above, it is stated that the reducer function must return a state object. An object will be the most common data-type returned, but it can technically store numbers or strings. 
+
+Moving on to the subscriber. The subscriber will be a function that calls `store.getState()` to get the state from the store. We also have to tell the store there is a subscriber with the `store.subscribe()` method, passing in the subscriber function. When state in the store changes, it executes the subscriber function so it can update based on the new state. 
+
+@10:06 - About to give the application a test run. Pasted code created so far. 
