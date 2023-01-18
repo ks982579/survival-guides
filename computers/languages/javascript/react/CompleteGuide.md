@@ -1510,4 +1510,74 @@ Above, it is stated that the reducer function must return a state object. An obj
 
 Moving on to the subscriber. The subscriber will be a function that calls `store.getState()` to get the state from the store. We also have to tell the store there is a subscriber with the `store.subscribe()` method, passing in the subscriber function. When state in the store changes, it executes the subscriber function so it can update based on the new state. 
 
-@10:06 - About to give the application a test run. Pasted code created so far. 
+At this point, even though we don't have an action, we can open the terminal to test out the program. 
+
+```bash
+node file_name.js
+```
+
+We get an error that we cannot read property `counter` of undefined. We get this error because we create a store with a reducer function, and inside the reducer we set the counter to itself plus one. However, when initialised Redux tries to execute the function, which initially has no `counter` variable defined. The deeper issue is that `state` is undefined, we have no existing state when the program is initialised. 
+
+We can overcome this issue by giving `state` a default value. And after the state is initialised, Redux will pass the old state back into the reducer, ignoring the default. 
+
+```js
+//reducer function
+const counterReducer = (state = { counter: 0 }, action) => {
+    return {
+        counter: state.counter + 1
+    };
+};
+```
+
+If you now run the script, it won't error-out, but you won't see anything logged to the console. The other issue is we need an action to trigger our subscription. Below the existing code, we will call the `store.dispatch()` method. 
+
+**Dispatch** is a method that dispatches an action, so we must pass the action in as an object with a 'type' property, which acts as an identifier. It's values is typically a unique string. 
+
+```js
+store.dispatch({ type: 'increment' });
+```
+
+If we execute the file again, you'll get an output to the console of `{ counter: 2 }`. _Side note:_ we get 2 because we initialize the state to 0, but the initialisation with the reducer automatically increments the counter to 1. We then dispatch an action, which calls the reducer and increments to 2. 
+
+The next step is to update the reducer to listen to the 'type' coming in. 
+
+### Lesson 231: More Redux Basics
+
+We can simply use an 'if' check on the action's type property to run specific actions when instructed. 
+
+```js
+...
+//reducer function
+const counterReducer = (state = { counter: 0 }, { type }) => {
+    if( type === 'increment'){
+        return {
+            counter: state.counter + 1
+        };
+    } else {
+        return { counter: state.counter }
+    };
+};
+...
+```
+
+In the above code snippet, I actually destructure the 'action' object inside the parameters, a common technique used in ES6. And with that change, if we run the script again, the output is `{ counter: 1 }` because we don't increment on initialisation. 
+
+**Fun Fact:** The initial action object Redux passes into a reducer is `{ type: '@@redux/INITq.o.h.r.f.i' }` per a `console.log()`. 
+
+**Practice:** Add a 'decrement' action to the reducer that decrements the counter state by 1 when called. Then dispatch the action at the end of the file. 
+
+This is the heart of Redux and how it works. There is a lot more to it, but we now have a good understanding of the basics. 
+
+### Lesson 232: Preparing a new Project
+
+This lesson came with a starter project. With the scaffolding of the project, run `npm install` to get "node_modules". 
+
+The starting application is just a simple counting app. The first step is:
+
+```bash
+npm install redux react-redux
+```
+
+The `react-redux` make connecting React application to Redux store and reducers much easier. For example, it will be simple to subscribe components to the Redux store. 
+
+### Lesson 233: Creating a Redux Store for React
