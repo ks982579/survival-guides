@@ -1,0 +1,289 @@
+{
+  "title": "Unit 1: Computer Networks",
+  "description": "This section covers the fundamentals of distributed ledger technology (DLT), including its properties, types, data structures, protocol stack architecture, and major platforms. It also introduces ubiquitous computing and IoT concepts.",
+  "questions": {
+    "multiplechoice": [
+      {
+        "question": "What is the primary architectural difference between a centralized distributed system and a decentralized distributed system?",
+        "choices": {
+          "correct": "In a centralized distributed system, decisions/services are controlled by a single node, while in a decentralized system, there is no central control",
+          "incorrect": [
+            "In a centralized distributed system, computation is done by one node, while in a decentralized system, multiple nodes compute",
+            "In a centralized distributed system, all nodes must be physically connected, while in a decentralized system, nodes can be wireless",
+            "In a centralized distributed system, only public networks are used, while in a decentralized system, private networks are required"
+          ]
+        },
+        "order": 0
+      },
+      {
+        "question": "Which property of DLT ensures that ledger transaction activities cannot be changed after a certain period of time?",
+        "choices": {
+          "correct": "Irreversibility",
+          "incorrect": [
+            "Immutability",
+            "Data provenance",
+            "Distributed consensus"
+          ]
+        },
+        "order": 1
+      },
+      {
+        "question": "What is the primary purpose of consensus algorithms in distributed ledger technology?",
+        "choices": {
+          "correct": "To achieve agreement on a single data value across distributed nodes",
+          "incorrect": [
+            "To encrypt transactions using public key cryptography",
+            "To increase the speed of blockchain mining operations",
+            "To prevent unauthorized access to private ledgers"
+          ]
+        },
+        "order": 2
+      },
+      {
+        "question": "Which of the following is NOT a property of distributed ledger technology?",
+        "choices": {
+          "correct": "Centralized control authority",
+          "incorrect": [
+            "Decentralization",
+            "Data consistency",
+            "Accountability and transparency"
+          ]
+        },
+        "order": 3
+      },
+      {
+        "question": "What is the main difference between public and private distributed ledgers?",
+        "choices": {
+          "correct": "Public ledgers allow anyone to update the ledger state, while private ledgers only allow authorized entities",
+          "incorrect": [
+            "Public ledgers use blockchain structure, while private ledgers use DAG structure",
+            "Public ledgers require proof of work, while private ledgers use proof of stake",
+            "Public ledgers are faster than private ledgers in transaction processing"
+          ]
+        },
+        "order": 4
+      },
+      {
+        "question": "In blockchain data structure, what does the Merkle Tree represent?",
+        "choices": {
+          "correct": "A hash of all transactions in a block, with the root pointed in the block",
+          "incorrect": [
+            "A list of all previous blocks in chronological order",
+            "A consensus algorithm that validates new transactions",
+            "A cryptographic key used to sign digital transactions"
+          ]
+        },
+        "order": 5
+      },
+      {
+        "question": "How does a Direct Acyclic Graph (DAG) validate new transactions?",
+        "choices": {
+          "correct": "Each new transaction must validate two previous transactions that were not approved yet",
+          "incorrect": [
+            "Each new transaction is added to a block that contains all recent transactions",
+            "Each new transaction must be approved by 21 block producers",
+            "Each new transaction must solve a cryptographic proof of work puzzle"
+          ]
+        },
+        "order": 6
+      },
+      {
+        "question": "Which layer in the DLT protocol stack is responsible for providing the software user interface?",
+        "choices": {
+          "correct": "Application layer",
+          "incorrect": [
+            "Contract layer",
+            "Consensus layer",
+            "Network layer"
+          ]
+        },
+        "order": 7
+      },
+      {
+        "question": "What is the primary function of smart contracts in the DLT contract layer?",
+        "choices": {
+          "correct": "To define rules about state transitions and corresponding actions that execute automatically on each node",
+          "incorrect": [
+            "To encrypt and decrypt transactions using public key infrastructure",
+            "To form peer-to-peer networks using TCP/IP protocols",
+            "To represent physical hardware devices like sensors and actuators"
+          ]
+        },
+        "order": 8
+      },
+      {
+        "question": "Which network architecture is primarily used to implement DLT instead of client-server architecture?",
+        "choices": {
+          "correct": "Peer-to-peer (P2P) network architecture",
+          "incorrect": [
+            "Hierarchical network architecture",
+            "Star topology network architecture",
+            "Centralized server-based architecture"
+          ]
+        },
+        "order": 9
+      },
+      {
+        "question": "What consensus algorithm does Bitcoin use to ensure the validity of each block?",
+        "choices": {
+          "correct": "Proof of Work (PoW), also known as Nakamoto consensus",
+          "incorrect": [
+            "Proof of Stake (PoS)",
+            "Delegated Proof of Stake (DPoS)",
+            "Byzantine Fault Tolerance (BFT)"
+          ]
+        },
+        "order": 10
+      },
+      {
+        "question": "When did Ethereum transition from Proof of Work to Proof of Stake?",
+        "choices": {
+          "correct": "2022 with the Ethereum Merge",
+          "incorrect": [
+            "2018 when EOS.io was developed",
+            "2021 when EOS.io source code was archived",
+            "At its initial launch as a public DLT platform"
+          ]
+        },
+        "order": 11
+      },
+      {
+        "question": "How many validators (block producers) does the DPoS consensus algorithm use in EOS.io?",
+        "choices": {
+          "correct": "21 validators",
+          "incorrect": [
+            "51 validators",
+            "10 validators",
+            "100 validators"
+          ]
+        },
+        "order": 12
+      },
+      {
+        "question": "Which DLT platform was developed based on Bitcoin blockchain and allows users to update block size and protocols?",
+        "choices": {
+          "correct": "Multichain",
+          "incorrect": [
+            "Ethereum",
+            "EOS.io",
+            "Cardano"
+          ]
+        },
+        "order": 13
+      },
+      {
+        "question": "What mechanism ensures the authenticity of the data source in DLT transactions?",
+        "choices": {
+          "correct": "Digital signatures using public key cryptography (data provenance)",
+          "incorrect": [
+            "Merkle Tree root hash verification",
+            "Proof of Work mining difficulty adjustment",
+            "TCP/IP network layer encryption"
+          ]
+        },
+        "order": 14
+      },
+      {
+        "question": "Which property of blockchain makes it an append-only data structure?",
+        "choices": {
+          "correct": "All new transactions are appended to the tree, creating an immutable log of transaction history",
+          "incorrect": [
+            "Old blocks can be modified if consensus is reached by majority of nodes",
+            "Transactions are randomly inserted throughout the blockchain for security",
+            "Only the most recent block can contain transaction data"
+          ]
+        },
+        "order": 15
+      },
+      {
+        "question": "What is the primary goal of ubiquitous computing (pervasive computing)?",
+        "choices": {
+          "correct": "To enable computing on every kind of device at every location",
+          "incorrect": [
+            "To create a distributed ledger across multiple blockchain platforms",
+            "To connect only smartphones and computers to the internet",
+            "To centralize all computing resources in data centers"
+          ]
+        },
+        "order": 16
+      },
+      {
+        "question": "Which layer in the DLT protocol stack is responsible for resolving disagreements between network nodes caused by faults, delays, or malicious nodes?",
+        "choices": {
+          "correct": "Consensus layer",
+          "incorrect": [
+            "Network layer",
+            "Data layer",
+            "Device layer"
+          ]
+        },
+        "order": 17
+      },
+      {
+        "question": "What cryptocurrency is used to deploy smart contracts on the Ethereum platform?",
+        "choices": {
+          "correct": "Ether",
+          "incorrect": [
+            "Bitcoin",
+            "EOS tokens",
+            "Multichain coins"
+          ]
+        },
+        "order": 18
+      },
+      {
+        "question": "Which layer in the DLT protocol stack digitally signs data for authentication and integrity purposes?",
+        "choices": {
+          "correct": "Data layer",
+          "incorrect": [
+            "Contract layer",
+            "Network layer",
+            "Device layer"
+          ]
+        },
+        "order": 19
+      }
+    ],
+    "shortanswer": [
+      {
+        "question": "Explain the concept of decentralization in DLT and describe two benefits it provides.",
+        "answer": "Decentralization in DLT means there is no central authority controlling the system. Two key benefits are: (1) Protection from single point failure or single point security attacks, as no single node controls the entire system, and (2) Protection against tampering by a single party, since changes must be validated across multiple distributed nodes.",
+        "order": 0
+      },
+      {
+        "question": "What is the difference between immutability and irreversibility in distributed ledger technology?",
+        "answer": "Immutability means that actions and transactions on a device can be traced and audited by the ledger, ensuring a permanent record exists. Irreversibility means that ledger transaction activities cannot be changed or undone after a certain period of time has passed, providing finality to transactions.",
+        "order": 1
+      },
+      {
+        "question": "Briefly describe the role of the device layer and the network layer in the DLT protocol stack.",
+        "answer": "The device layer represents the physical hardware such as sensors, actuators, and networking hardware that can be connected with wires or wirelessly (similar to the physical layer in OSI/TCP-IP models). The network layer provides distributed network architecture by forming a P2P network based on communication protocols like TCP/IP.",
+        "order": 2
+      },
+      {
+        "question": "What is the relationship between ubiquitous computing and the Internet of Things (IoT)?",
+        "answer": "Ubiquitous computing aims to enable computing on various devices (computers, smartphones, wearables, appliances, cars) at every location. The IoT aims to connect these various devices and things to the internet, allowing them to communicate and share data. Essentially, IoT provides the connectivity infrastructure for ubiquitous computing.",
+        "order": 3
+      },
+      {
+        "question": "How does Multichain differ from Bitcoin despite being developed based on Bitcoin blockchain?",
+        "answer": "Multichain is a public platform that provides applications with a private distributed ledger capability. Unlike Bitcoin, Multichain allows users to customize and update the block size, protocols, and other blockchain parameters to suit specific application needs.",
+        "order": 4
+      }
+    ],
+    "longanswer": [
+      {
+        "question": "Describe the six layers of the DLT protocol stack. For each layer, explain its primary responsibility and how it contributes to the overall DLT architecture.",
+        "answer": "The six layers of the DLT protocol stack from top to bottom are:\n\n1. **Application Layer**: Provides the software user interface that can be developed by third parties on top of the underlying DLT architecture, enabling end-user interaction with the system.\n\n2. **Contract Layer**: Contains smart contracts, which are computer protocols that define rules about state transitions and corresponding actions. Smart contracts execute automatically on each node and provide a platform for building business applications like cryptocurrencies.\n\n3. **Consensus Layer**: Deals with distributed consensus to ensure trustworthiness of blocks and that all nodes have consistent ledger copies. It resolves disagreements between network nodes caused by faults, delays, or malicious nodes.\n\n4. **Network Layer**: Provides distributed network architecture by forming a P2P network based on communication protocols like TCP/IP, enabling nodes to communicate and share data.\n\n5. **Data Layer**: Collects data from the lower layer through transactions, encapsulates it with data layer headers, and digitally signs the data for authentication and integrity purposes.\n\n6. **Device Layer**: Represents the hardware or physical devices such as sensors, actuators, and networking hardware that can be connected with wires or wirelessly, similar to the physical layer in the OSI model.",
+        "totalPoints": 12,
+        "order": 0
+      },
+      {
+        "question": "Compare and contrast the two main DLT data structures: Blockchain and Direct Acyclic Graph (DAG). Discuss how each structure organizes transactions, validates new entries, and what advantages or characteristics each provides.",
+        "answer": "**Blockchain Structure**:\nBlockchain forms a chain of blocks or linked lists with hashes. Each block contains all recent transactions that have occurred within the last couple of seconds or minutes. The hash of all transactions in a block generates a Merkle Tree data structure, with the tree's root pointed to in the block. Blockchain is an append-only data structure where all new transactions are appended to the tree, creating an immutable log of the entire transaction history in the network. This structure provides strong security through cryptographic linking and makes it extremely difficult to alter historical records.\n\n**Direct Acyclic Graph (DAG) Structure**:\nDAG is a comparatively less popular data structure for distributed transactions. The graph starts with a beginning transaction that is approved directly or indirectly by other transactions in the graph. When a new transaction is submitted, it must validate two previous transactions that were not yet approved. This creates a web-like structure rather than a linear chain.\n\n**Key Differences**:\n- Blockchain uses a linear, sequential structure while DAG uses a graph-based structure\n- Blockchain appends new transactions to blocks, while DAG requires new transactions to validate previous ones\n- Blockchain is more established and widely used, while DAG is less popular but potentially offers different scalability characteristics\n- Both provide immutability but achieve it through different structural mechanisms",
+        "totalPoints": 8,
+        "order": 1
+      }
+    ]
+  }
+}
