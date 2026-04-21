@@ -499,3 +499,408 @@ p. 57;
 
 
 # Unit 4. Support Vector Machines
+
+
+
+# Unit 5. Decision Trees
+
+Q.) What is a decision Tree?
+
+> [!Answer]-
+> TODO
+
+Q.) How do you use a decision tree in supervised learning?
+
+> [!Answer]-
+> TODO
+
+Q.) What are the different approaches for constructing a Decision Tree?
+
+> [!Answer]-
+> TODO
+
+Q.) What are the different types of feature-ranking techniques used in Decision Trees?
+
+> [!Answer]-
+> TODO
+
+Q.) What is the purpose of the different feature-ranking techniques?
+
+> [!Answer]-
+> TODO
+
+Q.) What is meant by Tree Pruning?
+
+> [!Answer]-
+> TODO
+
+Q.) When does Tree Pruning Occur?
+
+> [!Answer]-
+> TODO
+
+Q.) How do tree classifiers help in building up an ensemble model?
+
+> [!Answer]-
+> TODO
+
+## Introduction
+
+Q.) What do decision trees represent?
+
+> [!Answer]-
+> A group of classification techniques that are based on the construction of a tree like structure. 
+
+Q.) What does the tree like structure of a decision tree represent?
+
+> [!Answer]-
+> The tree structure represents a set of nested decisions that make use of the provided feature information in a sequential manner to categorize the input object. 
+
+Q.) Decision Tree classifiers are widely used in various fields, name the two we talk about.
+
+> [!Answer]-
+> Image processing and character recognition.
+
+Q.) Name the 6 different areas of application we mention in the course book.
+
+> [!Answer]-
+> Medicine, financial analysis, astronomy, manufacturing, production, molecular biology. 
+
+## 5.1. Introduction to Decision Trees
+
+Q.) To which learning paradigm do Decision Trees belong?
+
+> [!Answer]-
+> They are classifiers and belong to the field of Supervised Learning.
+
+Q.) How many steps are there for building a decision tree? How are they referred to (names)?
+
+> [!Answer]-
+> There are two steps: the learning step and the decision step. 
+
+Q.) Provide a high-level description of the steps to build a decision tree.
+
+> [!Answer]-
+> The Learning step is the induction of a tree structer based on the training data of labeled data instances. 
+> The decision step includes the classification of testing data on non-labeled instances. 
+
+Q.) How is each instance in a dataset characterized?
+
+> [!Answer]-
+> By its set of features.
+
+Q.) What makes up the structure of a constructed decision tree?
+
+> [!Answer]-
+> Decision nodes, branches, and leaves. 
+
+Q.) What does each internal node in the decision tree represent?
+
+> [!Answer]-
+> A decision based on a feature!
+
+Q.) How are branches of the Decision node selected? 
+
+> [!Answer]-
+> Based on the value of the feature. 
+
+Q.) What do the branches in the decision tree represent?
+
+> [!Answer]-
+> Each branch represents a conditional statement (if-condition). 
+
+Q.) What does the root node of the decision tree represent?
+
+> [!Answer]-
+> It represents the most important feature of the data  objects with respect to the classification problem at hand.
+
+Q.) What is a **Discrete Feature**?
+
+> [!Answer]-
+> A "discrete feature" is a property of a certain value whose value has a finite set of distinct values. I like to think finite and countable. 
+
+Q.) What is a **splitting attribute**?
+
+> [!Answer]-
+> It is a feature represented **at** an internal node. The feature that determines how splitting occurs. It is the feature that the decision node uses to make a decision. Think of it like the content of the node. 
+
+Q.) What is a "decision node"?
+
+> [!Answer]-
+> The internal node that represents a feature. It is a point in the tree where a decision will be made, a fork in the road. 
+
+Q.) What is the "splitting criterion"? 
+
+> [!Answer]-
+> This is the condition to check, on a branch, that leads us to the next decision node. 
+
+Q.) What is a "ranking technique" and when would one be needed?
+
+> [!Answer]-
+> A ranking technique helps detect the degree of importance of a feature to a given classification problem. They are required when a dataset contains more than one feature. 
+
+Q.) How do you use a ranking technique when building a decision tree?
+
+> [!Answer]-
+> The classifier uses the technique to rank feature in terms of importance. Then, the classifier selects the most salient feature for representing the root node and then the remaining features in decreasing importance for the rest of the tree nodes. 
+
+Q.) What is a **decision rule**?
+
+> [!Answer]-
+> It is a group of conditions that enable the classifier to determine the class membership of an instance.
+
+Q.) Why is the visual form of a decision tree important to experts of a domain problem?
+
+> [!Answer]-
+> Visualizing the set of decision rules allows experts of the domain problem to understand the reason for classifying the instances. 
+
+Q.) What is the relationship between the number of decision rules and the number of training instances.
+
+> [!Answer]-
+> They grow together, as you need more decision rules, you also should have more training instances. 
+
+Q.) What is the relationship between complexity of the decision rules and the number of features?
+
+> [!Answer]-
+> As the number of features increases, so does the complexity of the decision rules.
+
+Q.) What is the relationship between complexity and visual understanding?
+
+> [!Answer]-
+> Induction of a complex decision tree reduces the advantage of interpreting its visual form. 
+
+
+
+Q.) What is the main concern of increasing the decision complexity?
+
+> [!Answer]-
+> As you add more decision rules the growing concern is that the tree begins to fit too closely to a specific set of instances, leading to overfitting. 
+
+Q.) How does overfitting occur in a decision tree?
+
+> [!Answer]-
+> Too many decision rules, too much complexity and overtraining.
+
+Q.) What happens when overfitting occurs to a decision tree
+
+> [!Answer]-
+> The decision tree loses its ability to classify new data instances. 
+
+Q.) What happens if the classifying model is not trained enough, the decision tree classification model?
+
+> [!Answer]-
+> The decision tree will be too simple to classify instances accurately, causing underfitting, the opposite of overfitting. 
+
+#here -> Top of 111.
+
+Q.) Describe what a successfully accurate decision tree is able to do.
+
+> [!Answer]-
+> A successfully accurate decision tree is a classifying model that has the ability to generalize, which avoids both overfitting and underfitting. 
+
+Q.) When is the inferred decision tree most effective?
+
+> [!Answer]-
+> When it correctly covers as many instances in the training dataset as possible without overfitting. 
+
+Q.) What is a problem decision trees may have while building the tree?
+
+> [!Answer]-
+> Decision trees may include branches that represent outliers or noise in the input dataset. 
+
+
+Q.) How do decision tree classifiers overcome issues to improve classification accuracy?
+
+> [!Answer]-
+> They commonly apply some pruning methods to remove branches based on outliers and noise to improve classification accuracy. 
+
+Q.) What is the engine behind the success of decision tree classifiers (not a real engine)? Maybe, what ability drives success of a decision tree classifier?
+
+> [!Answer]-
+> The success is driven by their ability to encode decision-making knowledge in the form of decision rules.
+
+Q.) Why are decision trees easier to understand and interpret compared to other classifiers like SVM and neural networks?
+
+> [!Answer]-
+> The trees are constructed in a way that enables the analyst or decision maker to understand the reason for classifying a tested instance in a particular way; they are easier to interpret due to their natural representation. The other classifiers are black box classifiers, the decision logic is unknown. 
+
+Q.) What are two advantage of a decision tree classifier that relate to mathematics?
+
+> [!Answer]-
+> Their independence on statistical distribution of the input data and their ability to deal with input datasets where the relationship between the features and class labels of the associated objects is nonlinear. 
+
+
+## 5.2. Decision Tree Approaches for Classification
+
+Q.) What are the most popular decision trees?
+
+> [!Answer]-
+> ID3 (Quinlan, 1896), C4.5 (Quinlan, 1993), and CART (Breiman et al., 1984). 
+
+Q.) How do different approaches differ from each other?
+
+> [!Answer]-
+> They differ in the way that features are ranked and selected while creating the decision tree, and with respect to the utilized pruning mechanism. 
+> 1.) feature ranked;
+> 2.) feature selected;
+> 3.) pruning technique.
+
+Q.) What are popular feature ranking techniques used in decision tree approaches?
+
+> [!Answer]-
+> 1.) Information Gain
+> 2.) Gain Ratio
+> 3.) Gini Index
+
+Q.) Please map the popular decision trees to their respective feature ranking technique.
+
+> [!Answer]-
+> 1.) ID3     ->  Information Gain
+> 2.) C4.5   ->  Gain Ratio
+> 3.) CART ->  Gini Index
+
+Q.) What does ID3 really stand for?
+
+> [!Answer]-
+> Iterative Dichotomiser.
+
+Q.) How does ID3 use Information Gain?
+
+> [!Answer]-
+> ID3 uses IG to select the best splitting features!
+
+Q.) What is a high-level overview of the Information Gain feature-ranking technique?
+
+> [!Answer]-
+> IG characterizes the distribution of the class data in a feature vector. It measures the degree of homogeneity of the classes induced by a decision node (i.e., a split of feature values). 
+> The calculation of the IG dataset features is based on measuring the **entropy** of the class assignments with respect to a split in that feature. 
+> This quantity is inversely proportional to IG. 
+> I.E. IG is the reduction of entropy of class assignment based on the feature split under examination.
+
+Q.) What is Entropy?
+
+> [!Answer]-
+> Generally speaking, "entropy" is the degree of disorganization and randomness in a set of observations. 
+
+Q.) What is the calculation of information gained from a feature based on?
+
+> [!Answer]-
+> It is based on the calculation of its Entropy. 
+
+Q.) Examples; describe the entropy of 3 datasets:
+1. Objects in dataset are equally divided between two existing classes.
+2. Objects in dataset are more of one class than another.
+3. Objects in dataset are all of one class type.
+
+> [!Answer]-
+> 1.) Entropy is One because the dataset is completely heterogeneous.
+> 2.) Entropy is $> 0$ but $< 1$ because the impurity has decreased (compared to 1).
+> 3.) Entropy is Zero because the dataset is completely homogenous. 
+
+Q.) What is the Entropy of a dataset $D$ in mathematical representation?
+
+> [!Answer]-
+> ...
+
+$$
+\tag{1}
+\mathbf{Info}(D) = \sum_{k=1}^m{
+\left(
+-P_k \cdot \log(P_k)
+\right)
+}
+$$
+
+Where:
+- $D$ is the dataset of instances.
+- $k$ is a class.
+- $P_k$ is probability that any instance belongs to a particular class.
+
+The probability is calculated as the ratio between the number of instances that belong to $k$ and the total number of instances in $D$. 
+
+Q.) After the first partition, how do we represent instances that are partitioned by a feature $f$? 
+
+> [!Answer]-
+> ...
+
+$$
+\begin{align}
+\tag{2}
+\mathbf{Info}_f(D) &= \sum_{i=1}^v{
+\left(
+\frac{|d_i|}{|D|} \cdot \mathbf{Info}(d_i)
+\right)
+} \\
+\mathbf{Info}_f(D) &= \sum_{i=1}^v{
+\left(
+\frac{|d_i|}{|D|} \cdot 
+\left(
+\sum_{k=1}^m{
+\left(
+-P_k \cdot \log(P_k)
+\right)
+}
+\right)
+\right)
+}
+\end{align}
+$$
+
+Where:
+- $D$ is the dataset of instances.
+- $f$ is the feature of partition. 
+- $k$ is a class.
+- $P_k$ is probability that any instance belongs to a particular class.
+
+This function measures the ability of any *feature to split* the dataset into equally divided partitions! Each partition corresponds to a single class label. 
+
+A feature $f$ partitions the instances in the dataset into $v$ subsets, considering that this feature is of $v$ distinct values. The instances in each subset $d_i$ have the same value of the feature $f$. 
+
+The function $\mathbf{Info}_k(D)$ is calculated as the weighted sum of the entropy of the $v$ subsets.
+
+Q.) In the partitioned information gain function, $\mathbf{Info}_f(D)$, please explain the representation of $\mathbf{Info}(d_i)$.
+
+> [!Answer]-
+> ...
+
+$\mathbf{Info}(d_i)$ represents the **entropy** of *subset* $d_i$. 
+
+The term $|d_i|/|D|$ acts as the weight of this partition $d_i$. 
+
+The value of $|d_i|$ is the number of instances in partition $i$.
+
+The value of $|D|$ is the total number of instances in the dataset.
+
+Q.) When do we reduce the entropy ($\mathbf{Info}(D)$) in dataset $D$ to ($\mathbf{Info}_f(d_i)$)?
+
+> [!Answer]-
+> When the feature $f$ splits the instances in $D$. 
+
+Q.) What is a reduction in entropy caused by?
+
+> [!Answer]-
+> Reduction in entropy due to a specific feature is equivalent to the information gain of the feature. 
+
+Q.) Mathematically define the information gain of feature $f$.
+
+> [!Answer]-
+> ...
+
+$$
+\tag{3}
+\mathbf{Gain}(f) = \mathbf{Info}(D) - \mathbf{Info}_f(D)
+$$
+
+Q.) How is information gain of a feature related to the entropy of a dataset?
+
+> [!Answer]-
+> The information gain of a feature is inversely proportional to entropy of the dataset when the feature is used.
+> The feature divides the dataset into a group of subsets. 
+> If all values of the feature are distinct, then each subset includes only ONE instance.
+
+Q.) Is information gain able to be calculated for discrete and continuous features?
+
+> [!Answer]-
+> No, only discrete features. 
+
+#here p. 113; C4.5 and Gain Ratio
