@@ -261,7 +261,7 @@ $$
 > [!question]
 13.) What is overfitting? Why does it happen and how does it impact your model?
 
-> [!answer]
+> [!answer]-
 > Overfitting is a scenario where the model performs very well on its training data but does not perform well on the testing dataset. 
 > This happens when the model highly adapts to the training set.
 > Overfitting will impact negatively on the degree of generalization on new data and should be avoided for solutions to be useful in practical applications. 
@@ -271,112 +271,489 @@ $$
 > [!question]
 > What is Underfitting?
 
-> [!answer]
+> [!answer]-
 > Underfitting happens when the model does not capture enough of the inherent structure in the training data.
 > This results in poor performance with both training and testing sets.
 
 
 
-## 1.2. Machine Learning Paradigms
-
-
-
 > [!question]
-14.) What does an efficient ML model do?
+> 14.) What does an efficient ML model do?
 
 > [!answer]
-> ?
+> A efficient ML model attempts to decrease generalization errors and thus have good predictions on data that the model was not trained for. 
 
+## 1.2. Machine Learning Paradigms
 
 
 > [!question]
 15.) Give a brief explanation of the Supervised Learning paradigm. 
 
-> [!answer]
-> ?
+> [!answer]-
+> A ML paradigm where the given dataset contains both inputs and desired outputs. 
 
 
 
 > [!question]
 16.) What is the objective of Supervised learning?
 
-> [!answer]
-> ?
+> [!answer]-
+> The objective is to develop an **association** model ($f$) that relates inputs to outputs, and can predicts the output for future inputs. See the following:
+
+$$
+\begin{align}
+y &= f(x_i)
+\\
+i &= 1, \dots, n
+\end{align}
+$$
+
+Where:
+- $n =$ the total number of variables (i.e. characteristics) in the data samples. 
+- $f =$ a estimation function of the possible output for its inputs.
+- $x_i =$ the underlying variable values.
+- $y =$ output.
 
 
 
 > [!question]
-17.) What happens to parameters of model during the learning process?
+> What is the difference between the output of classification and regression? 
 
-> [!answer]
-> ?
+> [!hint]
+> Difference is characteristics, not mathematical operation.
+
+> [!answer]-
+> Classification: the output ($y$) belongs to a set of finite and discrete values that define the predicted classes.
+> Regression: the output ($y$) belongs to a range of infinite continuous values that define the numerical outcome(s).
 
 
 
-They are updated until the optimum setting is achieved.
+> [!question]
+> 17.) What happens to parameters of model during the learning process?
+
+> [!answer]-
+> They are continuously updated until the optimum setting is achieved.
+
+
 
 > [!question]
 18.) What governs the parameter updating process during learning?
 
-A specific loss function.
-The objective becomes adjusting parameters to minimize the loss function. 
+> [!answer]-
+> A specific loss function.
+
+
+
+> [!question]
+> What is the objective regarding the use of the loss function?
+
+> [!hint]
+> What are we trying to do with to the loss function?
+
+> [!answer]-
+> The objective becomes adjusting parameters to minimize the loss function. 
+
+
 
 > [!question]
 19.) What is typical loss function of regression?
 
-The MSE.
+> [!answer]-
+> The MSE
+
+
+
+> [!question]
+> What are the three formula to the loss functions?
+
+$$
+\begin{align}
+\text{Mean Square Error} &= \frac{1}{n} \sum_{i=1}^n{
+\left((y_i - \hat{y}_i)^2\right)}
+\\
+\text{Root Mean Square Error} &= \sqrt{MSE}
+\\
+\text{Mean Absolute Error} &= \frac{1}{n} \sum_{i=1}^n{
+\left(|y_i - \hat{y}_i|\right)}
+\end{align}
+$$
+
 
 > [!question]
 20.) What is the typical loss function for classification problems?
 
-Can be the number of wrongly classified instances. 
+> [!answer]-
+> Can be the number of wrongly classified instances. 
+
+
 
 > [!question]
 21.) What is the structure of the supervised learning procedure?
 
-instances of training set are used to learn the model via classification/regression algorithm.
-Then, modle is applied to predict the otupt for testing samples (not presented during model's training. 
+> [!hint]
+> What happens first? What are we building? What are we doing with what we build? 
+
+> [!answer]-
+> instances of training set are used to learn the model via classification/regression algorithm.
+> Then, model is applied to predict the output for testing samples (not presented during model's training. 
+
+
 
 > [!question]
-22.) What type of Supervised learning would be applied to determine the current value of a home?
+> When is a model employed to do prediction tasks on future instances?
+
+> [!answer]-
+> Only if the computed output, from the testing samples, is within an acceptable threshold from the desired output. Only then is the model employed to do prediction tasks for future instances. 
+
+
 
 > [!question]
-23.) Know Supervised learning techniques on page 22-23.
+> What happens if the model fails on its output for the testing samples? What if it has bad results, then what?
+
+> [!answer]-
+> Before giving up, we repeat the learning process. 
+
+
+
+> [!question]
+> 22.) What type of Supervised learning would be applied to determine the current value of a home? Why?
+
+> [!answer]-
+> A home value can be considered a continuous numerical value, which lands in Regression.
+
+
+
+> [!question]
+> 23.) What Supervised Learning techniques product Numerical Functions?
+
+> [!answer]-
+> Linear Classifier
+> Linear Regression
+> Multi-linear regression
+
+
+
+> [!question]
+> What Supervised Learning techniques product Parametric Probabilistic Functions?
+
+> [!answer]-
+> Support Vector Machine
+> Naive Bayes
+> Gaussian Discriminant Analysis
+> Hidden Markov Models
+
+
+
+> [!question]
+> What Supervised Learning techniques product Non-parametric instance based Functions?
+
+> [!answer]-
+> K-Nearest Neighbors
+> Kernel Regression
+> Kernel Density Estimation
+
+
+
+> [!question]
+> What Supervised Learning techniques product Non-metric Symbolic Functions?
+
+> [!answer]-
+> Decision Tree
+
+
+
+> [!question]
+> What do we mean by a "Parametric" function?
+
+> [!answer]
+> A function expressed with parameters!
+
+
 
 > [!question]
 24.) What is unsupervised learning, when do we use?
 
-The objective is to develop ML models to discover patterns and structures in training data. 
+> [!answer]-
+> The objective is to develop ML models to discover patterns and structures in training data. 
+> You use it because you do not know the desired categories for any of the given objects beforehand. 
+
+
+
+> [!question]
+> What problems is Unsupervised Machine Learning implemented for?
+
+> [!answer]-
+> For problems with unlabeled datasets
+
+
+
+> [!question]
+> Explain what a dataset for Unsupervised learning consists of please.
+
+> [!answer]-
+> It would consist of inputs (independent variables, $x_i$) but without the outputs (dependent variable, $y$) as they not known.
+
+
+
+> [!question]
+> Is this setting of unlabeled data common in Machine Learning? Why?
+
+> [!answer]-
+> Yes it is because the acquisition of labels is typically expensive in big data applications. Expensive and time consuming. 
+
+
+> [!question]
+> What is the **aim** of Unsupervised Learning?
+
+> [!answer]-
+> The aim is to discover the salient patterns withing the given inputs, resulting in dimensionality reduction, and/or clustering the data instances into groups according to their relative similarity.
+
+
 
 > [!question]
 25.) What is "Dimensionality Reduction"?
 
-the process of removing the irrelevant variables form the dataset. 
+> [!answer]-
+> the process of removing the irrelevant variables form the dataset. 
+
+
 
 > [!question]
-26.) What is an outlier?
+> Please explain the structure of unsupervised machine learning.
+
+> [!answer]-
+> You get data - no labels
+> Train-Test split
+> Train a model with an Unsupervised Learning Algorithm, can be for dimensionality reduction or outlier detection. 
+> Use the Testing data sample to ensure performance.
+> Employ the model to predict future values.
+
 
 > [!question]
-27.) what are True and Fake outliers?
+> How does Unsupervised Learning Models learn to represent their inputs?
+
+> [!answer]-
+> By Extracting statistical structure that is intrinsic to the overall collection of data instances. 
+
 
 > [!question]
-28.) What are Unsupervised Learning Techniques (page 25.)?
+> What else can Unsupervised learning be used for?
+
+> [!answer]-
+> Outlier detection
+> Dimensionality reduction
+> To find the best independent variables for visualizing or cluster the dataset. 
+> Encompassing the identification data points with high difference to the typical data points in a given dataset (outliers).
+
+> [!question]
+> 26.) What is an outlier?
+
+> [!answer]-
+> An outlier is a term that refers to those data records that are far from the bulk of the input dataset.
+
+
+
+> [!question]
+> 27.) What are True and Fake outliers?
+
+> [!answer]-
+> True outlier occur from the actual data generating process.
+> Fake outliers stem from measurement, recording, or data storage errors.
+
+
+
+> [!question]
+> What is the cost function of an unsupervised learning model?
+
+> [!answer]-
+> It can be:
+> - The minimum quantization error.
+> - minimum distance between similar data instances.
+> - maximum likelihood estimation of the correct cluster.
+
+
+
+> [!question]
+> What are Unsupervised Learning Techniques for Clustering Analysis?
+
+> [!answer]-
+> K-Means
+> Hierarchical Clustering
+
+
+
+> [!question]
+> What are Unsupervised Learning Techniques for Density Estimation?
+
+> [!answer]-
+> Gaussian Mixture Model (GMM)
+> Graphical Models
+
+
+
+> [!question]
+> What are Unsupervised Learning Techniques for Outlier Detection?
+
+> [!answer]-
+> DBSCAN
+
+
+
+> [!question]
+> What are Unsupervised Learning Techniques for Dimensionality Reduction?
+
+> [!answer]-
+> Principal Component Analysis
+> Factor Analysis
+
+---
+
+p. 25) Semi-Supervised Learning
+
+
+
+> [!question]
+> For what datasets do we implement Semi-Supervised Machine Learning?
+
+> [!answer]-
+> 
+
+
+
+> [!question]
+> What is the "Semi-Supervised Classification Step"
+
+> [!answer]-
+> Basic classification model is designed on the few labeled data instances. Then, this step is performed where the model is tuned up to operate without supervision on the remaining large unlabeled data instances. 
+> It assigns them to the classes from the first step. 
+> The second step of semi-supervised learning is to transfer labels to all samples through their similarity to originally labeled data points. 
+
+
+
+> [!question]
+> What are the advantages of Semi-Supervised ML? 
+
+> [!answer]-
+> p. 26;
+> cost & more insights - but word better
+
+
+
+> [!question]
+> What is a popular application for Semi-Supervised Learning?
+
+> [!answer]-
+> Medical Imaging - expert can label small number of radiography scans and a developed semi-supervised learning model will automatically group the rest of scans. 
 
 
 ## 1.3. Reinforcement Learning
 
-> [!question]
-29.) What is Reinforcement Learning?
+p. 27;
 
 > [!question]
-30.) What are the ingredients of Reinforcement Learning?
+> What is Reinforcement Learning?
 
-A.A.E.S.R.P.V.
+> [!answer]-
+> The objective is to find an Action Policy that achieves a given goal by trial-and-error interactions with the environment. 
+> Cause and Effect method - an action is performed to achieve a maximum reward.
+> Reward function acts as feedback to the agent. 
+
+
+
+What is an "Action Policy"?
+
+What is a "Reward Function"?
+
+
+
+> [!important]
+> > [!question]
+> What are the ingredients of Reinforcement Learning?
+
+> [!answer]-
+> A.A.E.S.R.P.V.
+> Agent: Hypothetical entity that performs actions in an environment to gain some reward.
+> Action: All the possible moves that the agent can take.
+> Environment: Scenario that the agent has to face.
+> State: Current Situation returned by the environment.
+> Reward: An Immediate return sent back from the environment to evaluate the last action by the agent.
+> Policy: Strategy that the agent employs to determine the next action based on the current state.
+> Value: The expected long-term return of the current state under policy. 
+
+
+
 
 > [!question]
-31.) What are applications of Reinforcement Learning?
+> 31.) What are applications of Reinforcement Learning?
+
+> [!answer]-
+> 
 
 Games and robotics. 
+
+
+> [!question]
+> How is Reinforcement learning accomplishing ML tasks in a differen way from the other paradigms?
+
+> [!answer]-
+> p. 28; It follows "Cause and Effect" method. 
+
+
+
+> [!question]
+> What is the ML model goal? The loss function or whatever?
+
+> [!answer]-
+> The goal is for the ML model to maximize its reward over a time horizon. Its actions are adjusted until a maximum reward is achieved. 
+
+
+
+> [!question]
+> What is the widely applied approach to perform a reinforcement learning?
+
+> [!answer]-
+> The Model-based approach
+
+
+
+> [!question]
+> What is the model-based approach?
+
+> [!answer]-
+> p. 29;
+
+
+
+> [!question]
+> Advantages of Model-based approach?
+
+> [!answer]-
+> 
+
+
+
+> [!question]
+> In Game Playing, what is the reinforcement model's objective?
+
+> [!answer]-
+> p. 29;
+
+
+
+> [!question]
+> In Game Playing, what is the reinforcement model's objective?
+
+> [!answer]-
+> p. 29;
+
+
+
+> [!question]
+> 
+
+> [!answer]-
+> 
+
 
 
 # Unit 2. Clustering
@@ -2734,7 +3111,3 @@ $$
 
 > [!Answer]-
 > 
-
-
-
----
