@@ -82,8 +82,9 @@ An example would be an e-mail spam filter.
 
 
 
-> [!question]
-> 5.) What are applications of ML? (Unit 2 of AI Course).
+> [!important]
+> > [!question]
+> > 5.) What are applications of ML? (Unit 2 of AI Course).
 
 > [!answer]-
 > 1. Natural Language Processing
@@ -687,16 +688,16 @@ What is a "Reward Function"?
 > 31.) What are applications of Reinforcement Learning?
 
 > [!answer]-
-> 
-
-Games and robotics. 
+> Games and robotics. 
 
 
 > [!question]
-> How is Reinforcement learning accomplishing ML tasks in a differen way from the other paradigms?
+> How is Reinforcement learning accomplishing ML tasks in a different way from the other paradigms?
 
 > [!answer]-
 > p. 28; It follows "Cause and Effect" method. 
+> The developed reinforcement model learns by performing an action in the environment that result in a max reward over a time horizon. 
+> Actions are adjusted until max reward is achieved. 
 
 
 
@@ -712,15 +713,23 @@ Games and robotics.
 > What is the widely applied approach to perform a reinforcement learning?
 
 > [!answer]-
-> The Model-based approach
+> The Model-based approach.
 
 
 
 > [!question]
-> What is the model-based approach?
+> What is the model-based approach? Can you go over the steps?
 
 > [!answer]-
 > p. 29;
+> In this approach, the agent learns a model using few interactions with the environment. In particular:
+> 1. The agent starts at state $S_1$.
+> 2. The Agent takes an action $a_1$.
+> 3. This action brings the Agent into state $S_2$.
+> 4. The agent gains a reward $r_2$. 
+> ---
+> The process is repeated.
+> The process can be generalized to relate current inputs of $(S_i, a_i)$ to their consequent outputs $(S_{i+1}, r_{i+1})$.
 
 
 
@@ -728,7 +737,8 @@ Games and robotics.
 > Advantages of Model-based approach?
 
 > [!answer]-
-> 
+> Advantages include:
+> - Speed-up of learning phase b/c no need to wait for environment to respond, nor to reset the learning process to its initial state.
 
 
 
@@ -754,194 +764,431 @@ Games and robotics.
 > [!answer]-
 > 
 
-
+- What is Machine Learning?
+	- A **subfield** of AI.
+	- A mathematical and Algorithmic approach.
+	- It is devoted to understanding and building methods that LEARN.
+	- Methods leverage data to improve performance on some set of tasks.
+- What is Traditional Programming?
+- What do ML methods use to build models?
+	- based on sample data.
+- What are these models built with the intentions of doing?
+	- To make predictions or decisions without being explicitly programmed to do so. 
+- These are from SLIDE - You are on "Classification" Slide
 
 # Unit 2. Clustering
 
-1.) What is Clustering?
+> [!question]
+> 1.) What is Clustering?
 
-To gather data records into natural groups of similar samples according to predefined similarity / dissimilarity metrics. 
-This results in extracting a set of useful information about the given dataset. 
+> [!answer]-
+> Clustering is an **Unsupervised** machine learning technique with goals to:
+> 1. Reveal meaningful partitions and hierarchies in data.
+> 2. Find association rules of data.
+> 3. gather data points into groups and extract useful information.
 
-2.) Name some examples that utilize clustering.
+I am not sure the question:
+
+> [!answer]-
+> To gather data records into natural groups of similar samples according to predefined similarity / dissimilarity metrics. 
+> This results in extracting a set of useful information about the given dataset. 
+
+> [!question]
+> 2.) Name some examples that utilize clustering. What are some Clustering Applications?
+
+> [!answer]-
+> 1. Pattern recognition
+> 2. Robotics
+> 3. Spatial Data Analysis
+> 4. Image Processing
+> 5. Crime Analysis
+> 6. Bio-informatics
+> 7. Medical Imaging
+
+
+> [!question]
+> 3.) What are 4 different types of Clustering methods?
+
+> [!answer]-
+> 1. Centroid-based; 
+> 2. Gaussian Mixtures Models; 
+> 3. Hierarchical; 
+> 4. Density-based
 
 
 
-3.) What are 4 different types of Clustering methods?
+> [!question]
+> What is "Unsupervised Learning"?
 
-Centroid-based; Gaussian Mixtures Models; Hierarchical; Density-based
+> [!hint]
+> Question is asking:
+> 1. What kind of task is it?
+> 2. What is it trying to *discover*?
+> 3. What kind of dataset?
 
-4.) What is "high intra-cluster similarity"?
+> [!answer]-
+> The term denotes the ML task of pattern or structure discovery in unlabeled datasets.
 
-When the contents of a cluster are similar to each other. 
-Contents of cluster should be similar to each other, they should have high intra-cluster similarity. 
 
-5.) What is "high inter-cluster separation"?
 
-When the contents of clusters are very different (dissimilar) from the contents of other clusters. 
+> [!question]
+> 4.) What is "high intra-cluster similarity"?
+
+> [!answer]-
+> When the contents of a cluster are similar to each other. 
+> Contents of cluster should be similar to each other, they should have high intra-cluster similarity. 
+> p. 32;
+
+> [!question]
+> 5.) What is "high inter-cluster separation"?
+
+> [!answer]-
+> When the contents of clusters are very different (dissimilar) from the contents of other clusters. 
 Again, resulting clusters from a cluster analysis should have high inter-cluster separation. 
 
-6.) What 2 properties should clusters have as a result from cluster analysis?
 
-Clusters should have both high intra-cluster similarity and hight inter-cluster separation. 
 
+> [!question]
+> 6.) What 2 properties should clusters have as a result from cluster analysis?
+
+> [!answer]-
+> Clusters should have both high intra-cluster similarity and hight inter-cluster separation. 
+
+
+
+> [!question]
 7.) What are two commonly implemented simple forms of distance functions? 
 
-Euclidean distance.
-Manhatten distance.
+> [!answer]-
+> Euclidean distance.
+> Manhatten distance.
 
-8.) What is the formula for Euclidean distance for two dimensional datasets?
 
-9.) What is the formula for the Manhattan distance?
 
-10.) What is a "Feature"?
+> [!question]
+> 8.) What is the formula for Euclidean distance for two dimensional datasets?
 
-A measurable and observable quantity about the data record. 
+> [!answer]
+> MATH
 
-11.) What step should be done to features of the datasets that have scales with widely differing ranges?
+$$
+d_{A,B} = \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2}
+$$
 
-Feature scaling - Standardize the ranges to the same scale before progressing in any form of clustering analysis. 
 
+
+> [!question]
+> 9.) What is the formula for the Manhattan distance?
+
+> [!answer]
+> MATH
+
+$$
+d_{A,B} = |x_A - x_B| + |y_A - y_B|
+$$
+
+
+
+> [!question]
+> 10.) What is a "Feature"?
+
+> [!answer]-
+> A measurable and observable quantity about the data record. 
+
+
+
+> [!question]
+> 11.) What step should be done to features of the datasets that have scales with widely differing ranges?
+
+> [!answer]-
+> Feature scaling - Standardize the ranges to the same scale before progressing in any form of clustering analysis. 
+
+
+
+> [!question]
 12.) How do we evaluate clustering results? 
 
-Usually evaluation is completed by Manual Inspection of results,
-benchmarking on existing labels, and distance measures to denote similarity level
-within a cluster and dissimilarity level across clusters. 
+> [!answer]
+> Usually evaluation is completed by Manual Inspection of results, benchmarking on existing labels, and distance measures to denote similarity level within a cluster and dissimilarity level across clusters. 
 
-13.) What is "Clustering Analysis"?
 
-This type of unsupervised Learning sorts a set of data records into clusters, or groups. 
 
-14.) What fields apply clustering analysis?
+> [!question]
+> 13.) What is "Clustering Analysis"?
 
-pattern recognition, image processing, spatial data analysis, bioinformatics, crime analysis,
-medical imaging, climatology, and robotics. 
+> [!answer]-
+> p. 32;
+> This type of unsupervised Learning sorts a set of data records into clusters, or groups. 
 
-15.) What is the noteworthy area of clustering application?
 
-Market segmentation, which focuses on grouping customers into clusters of different characteristics,
-and using them for targeted marketing. 
 
-Another common application is to implement clustering analysis to develop a recommendation system. 
+> [!important]
+> > [!question]
+> > 14.) What fields apply clustering analysis?
 
-16.) What are the 4 main methods / techniques of clustering analysis we discuss in the book?
+> [!hint]
+> What has UNLABELED data?
+> What needs to find unknown patterns?
 
-Centroid-based clustering methods;
-Gaussian mixtures models clustering methods;
-Hierarchical Clustering methods;
-Density based clustering methods. 
+> [!answer]-
+> 1. pattern recognition, 
+> 2. image processing, 
+> 3. spatial data analysis, 
+> 4. bioinformatics, 
+> 5. crime analysis, 
+> 6. medical imaging, 
+> 7. climatology, and 
+> 8. robotics. 
 
-17.) What is a Centroid?
 
-18.) What is Centroid-Based Clustering? give a brief explanation (high-level) of how it works.
 
-Centroid-based clustering searches for a pre-determined number of clusters within an unlabeled and possibly multidimensional dataset. 
+> [!question]
+> 15.) What is the noteworthy area of clustering application?
 
-The rule is that the distance between a data record and each of the cluster's centroids is calculated and the data record is assigned to the cluster achieving the minimum distance. 
+> [!hint]
+> There are 2 related ones here
+> MS and RS - but the S's are different...
 
-19.) How many clusters can a data record be assigned to in centroid-based clustering?
+> [!answer]-
+> 1. Market segmentation, which focuses on grouping customers into clusters of different characteristics, and using them for targeted marketing. 
+> 2. Another common application is to implement clustering analysis to develop a recommendation system. 
 
-One and only one. 
 
-20.) What is k-means clustering?
 
-It is a centroid-based clustering approach commonly used in practice. 
+> [!question]
+> 16.) What are the 4 main methods / techniques of clustering analysis we discuss in the book?
 
-This method partitions $n$ data records from the given dataset into (k) clusters. 
+> [!hint]
+> Not concrete methods, but the Types of methods. 
+> Each group will have its own set of techniques. 
 
-21.) What are the three main steps for K-means clustering?
+> [!answer]-
+> 1. Centroid-based clustering methods;
+> 2. Gaussian mixtures models clustering methods;
+> 3. Hierarchical Clustering methods;
+> 4. Density based clustering methods. 
 
-- Initialization
-	- A number of clusters are assumed (K is predetermined).
-	- The centroid of each cluster is randomly defined.
-- Assignment
-	- Clusters are formed by connecting each data record with nearest centroid. 
-- Update
-	- A more accurate centroid of each cluster is calculated as the mean point of its included data records. 
-- REPEAT assignment and update steps until convergence, when no changes in the calculated clusters' centroids. 
 
-22.) What is a simple procedure to define the initial placement of a cluster's centroid?
 
-To locate it at one of the given data records. It is PRUDENT to locate the centroids FAR from each other to span the whole domain of data records. 
 
-23.) What are some advantages of the K-means clustering?
+> [!question]
+> 17.) What is a Centroid? What are the two flavours of Centroids?
 
-page 41. 
+> [!answer]-
+> The arithmetic average position of all the points is the **centroid**. 
+> It *may* be located at a given point (real centroid), or at a new placement (imaginary centroid). 
+> - Think: It's *real* if it is represented by an actual data point. 
 
-- Simple to employ;
-- Suitably efficient for large datasets;
-- Assures convergence;
-- Easily assume initial centroids' placement;
-- Smoothly adjusts the clusters' oulines when new data records are introduced.
 
-24.) What are some limitations of K-means clustering?
 
-- Determining number of clusters - significantly difficult to predict. 
-- Different initial partitions can result in different final clusters. 
-- Assumes spherical shape of clusters
-	- technique does not work effectively in clustering datasets having regions with differently shaped densities. 
-- Handles only numerical datasets.
-- initial assumptions of controids may result in poor convergence rate.
-- Normalization of dataset may produce completely different results. 
-- K-means with standard Euclidian distance is not well-suited for high-dimensional data.
-- If dataset is dynamic over time, adds burden of checking optimum number of clusters periodically.
-- Fake outliers may not be detected and influence structures of clusters. 
+> [!question]
+> 18.) What is Centroid-Based Clustering? Give a brief explanation (high-level) of how it works.
 
-A lot.
+> [!answer]-
+> Centroid-based clustering searches for a pre-determined number of clusters within an unlabeled and possibly multidimensional dataset. 
+> The rule is that the distance between a data record and each of the cluster's centroids is calculated and the data record is assigned to the cluster achieving the minimum distance. 
 
-25.) What is the computation complexity of the distance calculation in k-means clustering?
 
-With $M$ iterations, and computation distance of $n$ records, and centroids $K$, the computation complexity is $O(M \cdot n \cdot K)$. 
 
-26.) What is a "Probabilistic Generative Model"?
 
-Models that explain how input data are generated in terms of their joint probability distributions. Each data record has a probability for belonging to each cluster and is assigned to a cluster returning the highest probability. 
+> [!question]
+> 19.) How many clusters can a data record be assigned to in centroid-based clustering?
 
-27.) What shape does "hard" clustering genearte?
+> [!answer]-
+> One and only one. 
 
-Circular clusters centered at the found centroids. 
 
-28.a.) What is a Gaussian Mixture Model?
 
-It is a probabilistic generative model that represents data as a combination of several Gaussian distributions, each with its own mean and variance, weighted by a mixing coefficient. Each distribution represents its own cluster. 
+
+> [!question]
+> 20.) What is k-means clustering?
+
+> [!answer]-
+> It is a centroid-based clustering approach commonly used in practice. 
+> This method partitions $n$ data records from the given dataset into ($K$) clusters and consists of three main steps:
+> 1. Initialization
+> 2. Assignment
+> 3. Update Step
+
+
+
+
+> [!important]
+> > [!question]
+> > 21.) What are the three main steps for K-means clustering?
+
+> [!answer]-
+> - Initialization:
+> 	- A number of clusters are assumed (K is predetermined).
+> 	- The centroid of each cluster is randomly defined.
+> - Assignment:
+> 	- Clusters are formed by connecting each data record with nearest centroid. 
+> - Update:
+> 	- A more accurate centroid of each cluster is calculated as the mean point of its included data records. 
+> - REPEAT:
+> 	- assignment and update steps until convergence, when no changes in the calculated clusters' centroids. 
+
+
+
+
+> [!question]
+> 22.) What is a simple procedure to define the initial placement of a cluster's centroid?
+
+> [!answer]-
+> To locate it at one of the given data records. It is PRUDENT to locate the centroids FAR from each other to span the whole domain of data records. 
+
+
+
+
+> [!important]
+> > [!question]
+> > 23.) What are some advantages of the K-means clustering?
+
+> [!answer]-
+> page 41. 
+> - Simple to employ;
+> - Suitably efficient for large datasets;
+> - Assures convergence;
+> - Easily assume initial centroids' placement;
+> - Smoothly adjusts the clusters' oulines when new data records are introduced.
+
+
+
+
+> [!important]
+> > [!question]
+> > 24.) What are some limitations of K-means clustering?
+
+> [!answer]-
+> - Determining number of clusters - significantly difficult to predict. 
+> - Different initial partitions can result in different final clusters. 
+> - Assumes spherical shape of clusters
+> 	- technique does not work effectively in clustering datasets having regions with differently shaped densities. 
+> - Handles only numerical datasets.
+> - initial assumptions of controids may result in poor convergence rate.
+> - Normalization of dataset may produce completely different results. 
+> - K-means with standard Euclidian distance is not well-suited for high-dimensional data.
+> - If dataset is dynamic over time, adds burden of checking optimum number of clusters periodically.
+> - Fake outliers may not be detected and influence structures of clusters. 
+
+
+
+
+> [!question]
+> 25.) What is the computation complexity of the distance calculation in k-means clustering?
+
+> [!answer]-
+> With $M$ iterations, and computation distance of $n$ records, and centroids $K$, the computation complexity is $O(M \cdot n \cdot K)$. 
+
+
+### 2.2. Gaussian Mixture Models Clustering
+
+p. 42;
+
+> [!question]
+> 26.) What is a "Probabilistic Generative Model"?
+
+> [!answer]-
+> Models that explain how input data are generated in terms of their joint probability distributions. Each data record has a probability for belonging to each cluster and is assigned to a cluster returning the highest probability. 
+
+
+
+
+> [!question]
+> 27.) What shape does "hard" clustering genearte?
+
+> [!answer]-
+> Circular clusters centered at the found centroids. 
+
+
+
+
+> [!question]
+> 28.a.) What is a Gaussian Mixture Model?
+
+> [!answer]-
+> It is a probabilistic generative model that represents data as a combination of several Gaussian distributions, each with its own mean and variance, weighted by a mixing coefficient. Each distribution represents its own cluster. 
 
 Book answer: defined as a set of $K$ probability distributions and each distribution corresponds to one cluster. 
 
-28.b.) What a Gaussian Mixture Models commonly used for? (2 answers).
 
-Clustering and density estimations. 
 
-28.) How does one determine the number of clusters for a GMM?
 
-GMM initially assumes the number of clusters for the input dataset. 
+> [!question]
+> 28.b.) What a Gaussian Mixture Models commonly used for? (2 answers).
 
-29.) Does a GMM ever take circular shapes like k-means? If so, when?
+> [!answer]-
+> Clustering and density estimations. 
 
-The GMM centroids are controlled by $\mu$ and $\sigma$ parameters. In the particular case when the inferred GMM clusters have equal and diagonal covariance matrix, they look equivalent to results obtained by k-means clustering. 
 
-30.) What is the "task" for GMM clustering?
 
-p. 43;
 
-31.) How to GMM achieve it's task?
+> [!question]
+> 28.) How does one determine the number of clusters for a GMM?
 
-Implements the expectation maximization algorithm. 
+> [!answer]-
+> GMM initially assumes the number of clusters for the input dataset. 
 
-32.) What is the "expectation maximization (EM) algorithm"? 
 
-It is an iterative method to find the maximum likelihood estimates of parameters $\mu$ and $\sigma$ to get the "best fit" model for input dataset. 
 
-Iteration stops when desired convergence criterion is achieved. 
 
-33.) When do we implement the EM algorithm?
+> [!question]
+> 29.) Does a GMM ever take circular shapes like k-means? If so, when?
 
-Implemented when there is an analytic model for the dataset and the model's shape is known, but parameters $\mu$ and $\sigma$ of the model are not known. 
+> [!answer]-
+> The GMM centroids are controlled by $\mu$ and $\sigma$ parameters. In the particular case when the inferred GMM clusters have equal and diagonal covariance matrix, they look equivalent to results obtained by k-means clustering. 
 
-34.) What steps are in the EM algorithm?
 
-The EM algorithm alternates between 2 steps:
-- Expectation (E)
-- Maximization (M)
+
+
+> [!question]
+> 30.) What is the "task" for GMM clustering?
+
+> [!answer]-
+> p. 43;
+> In general, the task in GMM clustering is to find the optimum values of both $\mu$ and $\sigma$, which maximize the overall probability, or likelihood, of the data records to be in their assigned cluster(s). 
+
+
+
+
+> [!question]
+> 31.) How to GMM achieve it's task?
+
+> [!answer]-
+> Implements the expectation maximization algorithm. 
+
+
+
+
+> [!question]
+> 32.) What is the "expectation maximization (EM) algorithm"? 
+
+> [!answer]-
+> It is an iterative method to find the maximum likelihood estimates of parameters $\mu$ and $\sigma$ to get the "best fit" model for input dataset. 
+> Iteration stops when desired convergence criterion is achieved. 
+
+
+
+
+> [!question]
+> 33.) When do we implement the EM algorithm?
+
+> [!answer]-
+> Implemented when there is an analytic model for the dataset and the model's shape is known, but parameters $\mu$ and $\sigma$ of the model are not known. 
+
+
+
+
+> [!question]
+> 34.) What steps are in the EM algorithm?
+
+> [!danger]
+> I feel this is too math heavy for the exam.
+
+> [!answer]
+> The EM algorithm alternates between 2 steps:
+> - Expectation (E)
+> - Maximization (M)
 
 1.) First - assume number of cluster $K$. 
 Guess initial parameter values for each cluster:
@@ -997,15 +1244,25 @@ $$
 
 
 
-35.) What is a natural initial assumption for cluster weights, $q_k$?
+
+
+
+> [!question]
+> 35.) What is a natural initial assumption for cluster weights, $q_k$?
+
+> [!answer]- 
+> All weights are equal for all clusters. 
 
 $$
 \sum_1^K {q_k}  =1
 $$
 
-All weights are equal for all clusters. 
 
-36.) How do you use Gaussian Mixture model in Python?
+
+
+
+> [!question]
+> 36.) How do you use Gaussian Mixture model in Python?
 
 ```python
 from sklearn.mixture import GaussianMixture
@@ -1016,7 +1273,11 @@ labels = gmm.predict(d) # predict cluster
 gmm.means_ # final means of each cluster
 ```
 
-37.) Advantages of GMM clustering?
+
+
+
+> [!question]
+> 37.) Advantages of GMM clustering?
 
 It is preferred for datasets consisting of regions that do not look like simple circles, maybe more like ellipsoids.
 
@@ -1026,7 +1287,11 @@ It is able to simultaneously optimize a large number of variables to create both
 - "hard" cluster with crisp 0-1 membership encoding, and
 - "soft" clusters with soft borders according to the probability level of each data record.
 
-38.) What are some limitations of GMM Clustering?
+
+
+
+> [!question]
+> 38.) What are some limitations of GMM Clustering?
 
 The EM algorithm can be slow because time consuming to find probability distribution for each data record. 
 
@@ -1036,11 +1301,22 @@ The steps suffer from heavy computations of conditional probabilities.
 
 > So, slow and expensive to run with a chance of incorrect results. 
 
-39.) Compared to K-Means clustering, what challenge does hierarchical clustering solve?
+
+### 2.3. Hierarchical Clustering
+
+p. 47;
+
+
+> [!question]
+> 39.) Compared to K-Means clustering, what challenge does hierarchical clustering solve?
 
 It solves the challenge of deciding the number of clusters to use during the initialization of K-means clustering. 
 
-40.) What is a Dendrogram
+
+
+
+> [!question]
+> 40.) What is a Dendrogram
 
 https://www.displayr.com/what-is-dendrogram/
 
@@ -1054,31 +1330,59 @@ https://www.geeksforgeeks.org/python/scipy-cluster-hierarchy-dendrogram/
 
 A Dendrogram is a tree-like diagram used to visualize the relationship among clusters.
 
-41.) What do we call the root of the tree?
+
+
+
+> [!question]
+> 41.) What do we call the root of the tree?
 
 The "Universe" cluster.
 
-42.) What is the tree's "Universe"?
+
+
+
+> [!question]
+> 42.) What is the tree's "Universe"?
 
 It is the root of the tree that includes all data records.
 
-43.) What are tree leaves called in a Dendrogram?
+
+
+
+> [!question]
+> 43.) What are tree leaves called in a Dendrogram?
 
 These form "single-point" clusters, just an individual data record. 
 
-44.) What are the two types of hierarchical clustering?
+
+
+
+> [!question]
+> 44.) What are the two types of hierarchical clustering?
 
 Agglomerative and Divisive. 
 
-45.) What is Agglomerative Clustering?
+
+
+
+> [!question]
+> 45.) What is Agglomerative Clustering?
 
 Clustering is done bottom-up approach, starting at "single-point" clusters and moves up by merging similar clusters until it reaches the "Universe" cluster. 
 
-46.) What is Divisive clustering?
+
+
+
+> [!question]
+> 46.) What is Divisive clustering?
 
 Clustering is done in a top-down approach. 
 
-47.) What are the steps of the agglomerative clustering algorithm?
+
+
+
+> [!question]
+> 47.) What are the steps of the agglomerative clustering algorithm?
 
 1.) Consider each record as a single-point. The number of clusters is equal to $n$, which is the number of data records. 
 
@@ -1090,25 +1394,41 @@ Clustering is done in a top-down approach.
 4.) Construct a tree (i.e. dendrogram) to visualize the progression of the formed clusters at each step.
 
 
-48.) How do you know if two single-point clusters are close to each other?
+
+
+
+> [!question]
+> 48.) How do you know if two single-point clusters are close to each other?
 
 Use a proximity matrix. - includes all distances from records to each other. 
 - can use Euclidean, Manhattan, or another distance measure.
 
-49.) How to measure distance in Hierarchical clustering when a cluster has more than one record. 
+
+
+
+> [!question]
+> 49.) How to measure distance in Hierarchical clustering when a cluster has more than one record. 
 
 Your options are:
 - Single Linkage - determine distance based on closest points of clusters.
 - Average linkage - like centroids, with averages.
 - Complete linkage - distance between farthest points of clusters. 
 
-50.) Why is Dendrogram important?
+
+
+
+> [!question]
+> 50.) Why is Dendrogram important?
 
 - Visualization of hierarchical clustering algorithm.
 - Aids in decision of optimum number of clusters in dataset. 
 	- greater the length of vertical lines, more distance between clusters. 
 
-51.) What is optimum number of clusters for hierarchical clustering?
+
+
+
+> [!question]
+> 51.) What is optimum number of clusters for hierarchical clustering?
 
 The optimum number of clusters, which ensures the
 largest intra-distances, can be determined heuristically through the following steps:
@@ -1116,14 +1436,22 @@ largest intra-distances, can be determined heuristically through the following s
 - Draw a horizontal line along this line.
 - The optimal number of clusters is equal to the number of intersections this horizontal line has. In our example, there are two intersections, as shown below.
 
-52.) What are advantages of Hierarchical Clustering?
+
+
+
+> [!question]
+> 52.) What are advantages of Hierarchical Clustering?
 
 Easy to implement.
 Results are more informative than unstructured set of flat clusters returned by most other clustering approaches. 
 Easier to decide number of clusters. 
 Lack of assumptions concerning a partiuclar number of clusters in initialization!
 
-53.) What are limitations of Hierarchical Clustering?
+
+
+
+> [!question]
+> 53.) What are limitations of Hierarchical Clustering?
 
 Once decision is made to combine two clusters, that cannot be undone. 
 Not suitable for large datasets.
@@ -1135,47 +1463,73 @@ Use k-means over hierarchical clustering for large datasets.
 
 p. 57;
 
-54.) What is the issue with Centroid based clustering algorithms?
 
-<details>
-<summary>Click for Answer</summary>
+### 2.4. Density-Based Clustering
+
+p. 57;
+
+> [!question]
+> 54.) What is the issue with Centroid based clustering algorithms?
+
 They do not address fake outliers.
-</details>
 
-55.) Why is the above (Q: 54) an issue?
 
-<details>
-<summary>Click for Answer</summary>
+
+> [!question]
+> What is a "fake outlier"?
+
+> [!answer]-
+> I think in this context, they are data records that are usually assigned to clusters even though they do not actually belong to a cluster.
+
+
+
+
+> [!question]
+> 55.) Why is the above (Q: 54) an issue?
+
 Points get assigned to clusters even if they belong to no clusters.
-</details>
 
-56.) What does density-based cluster do?
 
-<details>
-<summary>Click for Answer</summary>
+
+
+> [!question]
+> 56.) What does density-based cluster do? One sentence, how does it work?
+
 It identifies clusters by grouping dense data records together?
-</details>
 
-57.) What does density-based clustering allow the method to do (2 things)?
 
-<details>
-<summary>Click for Answer</summary>
+
+
+> [!question]
+> 57.) What does density-based clustering allow the method to do (2 things)?
+
 1. It allows for arbitrarily shaped clusters; and 
 2. allows the model to learn of outliers within the data.
-</details>
 
-58.) What concept is density-based clustering based on? 
+
+
+
+> [!question]
+> 58.) What concept is density-based clustering based on? 
 
 > [!answer]- 
 > It is based on the "$\varepsilon$-neighborhood" concept.
 
 
-59.) What is the $\varepsilon$-neighborhood of a data record $P$?
+
+
+
+> [!question]
+> 59.) What is the $\varepsilon$-neighborhood of a data record $P$?
 
 > [!Answer]-
 > It is the set of points contained in the shape of extension $2\varepsilon$, centered at $P$.
 
-60.) How do we mathematically describe, in general, the $\varepsilon$-neighborhood of a point $P$ in a dataset $d$?
+
+
+
+> [!question]
+> 60.) How do we mathematically describe, in general, the $\varepsilon$-neighborhood of a point $P$ in a dataset $d$?
 
 > [!Answer]-
 > $$
@@ -1185,13 +1539,194 @@ q \in d | \mathbf{dist}(p,q) \le \epsilon
 > $$
 > Where $N(P)$ is the number of data points.
 
-61.) In the above, What does $N(P)$ indicate?
+
+
+
+> [!question]
+> 61.) In the above, What does $N(P)$ indicate?
 
 > [!Answer]-
 > $N(P)$ indicates how dense the $\varepsilon$-neighborhood at $p$ is. 
 
 
+
+> [!question]
+> How do we consider points for Clusters following Density-Based Clustering?
+
+> [!Answer]-
+> We define a minimum density value, `MinPts`, for a neighborhood to be considered part of a cluster. 
+
+
+
+> [!question]
+> What 3 possible descriptions exist for data record $p$?
+
+> [!Answer]-
+> 1. Core point
+> 2. Border point
+> 3. Noise point
+
+
+
+> [!question]
+> What is a "Core Point"?
+
+> [!Answer]-
+> A point if $\varepsilon$-neighborhood contains more than specified `MinPts`.
+
+
+
+> [!question]
+> What is a "Border Point"?
+
+> [!Answer]-
+> A point if the $\varepsilon$-neighborhood contains fewer than the specified `MinPts`, but the point is within the $\varepsilon$-neighborhood of a Core point.
+> It is on the "fringe" of a cluster.
+
+
+
+> [!question]
+> What is a "Noise Point"?
+
+> [!Answer]-
+> Points that are neither Core nor Border points.
+
+
+
+> [!question]
+> Do you need to know the number of clusters before performing Density-Based clustering?
+
+> [!Answer]-
+> No, not for the DBSCAN anyway.
+
+
+
+> [!question]
+> What hyperparameters do we control to produce various clusters with the same data?
+
+> [!Answer]-
+> We control the radius ($\varepsilon$) of the point.
+> We control the number of points to create a neighborhood (`MinPts`).
+
+
+
+> [!question]
+> Do we have deterministic methods (math formulas) for determining the optimized `MinPts` and $\varepsilon$-neighborhood values?
+
+> [!Answer]-
+> No, but we have principled heuristics, which is better than guessing.
+
+
+
+> [!question]
+> What is the most widely used approach to determine MinPts?
+
+> [!info]
+> This is not in the book, but still interesting.
+
+> [!Answer]-
+> The k-distance graph method
+
+
+
+> [!question]
+> What is rule of thumb for MinPts?
+
+> [!Answer]-
+> They say $MinPts \ge Dimensionality + 1$. 
+> The "Curse of Dimensionality" means that sparse regions get sparser.
+
+
+
+> [!question]
+> Can you think of another way to optimize hyperparameters for DBSCAN?
+
+> [!Answer]-
+> Genetic Algorithms - but it's overkill.
+
+
+
+> [!question]
+> Generally, what is DBSCAN?
+
+> [!Answer]-
+> Ester et al. (1996)
+> It is a technique to perform general density-based spatial clustering for applications with Noise.
+> Density-Based Spacial Clustering for Applications with Noise.
+
+
+
+> [!question]
+> What are the advantages of DBSCAN?
+
+> [!Answer]-
+> 1. Efficient for large datasets with thousands of records.
+
+
+
+> [!question]
+> What is a limitation 
+
+> [!Answer]-
+> you *should* have some domain knowledge of the dataset to understand the groupings and to set the MinPts and $\varepsilon$.
+
+
+
+> [!question]
+> What are the steps of DBSCAN algorithm?
+
+> [!hint]-
+> There are 5 steps. And initializing parameters is kinda the first 2...
+
+> [!Answer]-
+> 1. Assume MinPts and the surface radius ($\varepsilon$).
+> 2. Start an arbitrary data record ($p$).
+> 3. Begins Conditional Logic step:
+> 	1. IF $p$ contains MinPts within $\varepsilon$-neighborhood
+> 		1. Then Cluster Formation begins!
+> 	2. Else:
+> 		1. $p$ is labeled as "noise" - but can be modified later if found within another $\varepsilon$-neighborhood of a core point data record.
+> 4. Density-connected cluster step:
+> 	1. IF $p$ is a CORE POINT; THEN:
+> 		1. the data records within its $\varepsilon$-neighborhood are part of the formed cluster.
+> 		2. All data records are added, along with their own $\varepsilon$-neighborhood, if they are also core points.
+> 5. Start a new data record (not previously processed), and repeat steps 3 and 4 until there are no unhandled data recrods, as schematically described in a figure on page 58. 
+
+
+
+> [!question]
+> What are Advantages of DBSCAN?
+
+> [!Answer]-
+> 1. No requirement to estimate an initial number of clusters in beginning of algorithm.
+> 2. It can discover arbitrary shaped clusters!
+> 3. It can efficiently separate cluster of high density and low density within a given dataset.
+> 4. It can pragmatically handle the contained outliers. 
+
+
+
+> [!question]
+> What are limitations of DBSCAN?
+
+> [!Answer]-
+> 1. Assumes Clusters have Uniform Density across clusters.
+> 2. Requires Domain knowledge of underlying dataset
+> 	1. This is to set up hyperparameters
+
+
+
+> [!question]
+> Why do clusters that vary in density cause DBSCAN to perform less effectively?
+
+> [!Answer]-
+> The hyperparameters that determine the clusters cannot be chosen seperately for each cluster. 
+> A "One Size Fits All" situation - even if the clusters should vary. 
+
+- [ ] Go through the slides
+
 # Unit 3. Regression
+
+- [ ] Go through the slides
 
 Q.) What is meant by Regression?
 
@@ -1222,14 +1757,173 @@ Q.) What are regularization approaches in regression analysis?
 ## 3.1. Linear and Nonlinear Regression
 
 > [!question]
-> ?
+> Why do we apply regression Analysis to business data?
 
 > [!Answer]-
+> To answer business related questions based on the data.
 
 
 
 > [!question]
-> ?
+> What is Regression?
+
+> [!Answer]-
+> It is a Statistical Method that attempts to determine strength and characteristics of the relationship between dependent and independent variables. 
+
+
+
+> [!question]
+> What is Regression in terms of ML?
+
+> [!hint]
+> Paradigm?
+> How is data? (labeled or unlabeled, continuous or discrete)?
+> What is the Goal?
+
+> [!Answer]-
+> It is a Supervised Learning Approach where the given dataset is labeled!
+> The goal is to find an expectation for relationship between target variable and the dependent variable(s) within a dataset.
+
+
+
+> [!question]
+> What is Simple Regression?
+
+> [!Answer]-
+> Regression analysis of a dataset with a single independent variable.
+
+
+
+> [!question]
+> What is Multiple Regression?
+
+> [!Answer]-
+> When the dataset has multiple independent variables.
+
+
+
+> [!question]
+> What is "Regression Analysis"? 
+
+> [!Answer]-
+> The process of finding the relationship between the dependent variable and independent variable(s).
+
+
+
+> [!question]
+> Is Regression ONLY a linear process?
+
+> [!Answer]-
+> No, it is not.
+
+
+
+> [!question]
+> What two types of regression analysis are there?
+
+> [!Answer]-
+> 1. linear
+> 2. non-linear
+
+
+
+> [!question]
+> Give a general mathematical equation for multiple linear regression; think in terms of the output, or what is being modeled (not determining coefficients).
+
+> [!Answer]-
+> math
+
+$$
+y = a_1 \cdot x_1 + a_2 \cdot x_2 + \dots \ + a_n \cdot x_n + b
+$$
+Where:
+- ... independent variables of dataset
+- ... coefficients of variables (weight of independent variable shared in resultant target variable $y$)
+- $b$ is constant or bias term.
+
+
+> [!question]
+> Give a general mathematical equation for multiple nonlinear regression; think in terms of the output, or what is being modeled (not determining coefficients).
+
+> [!Answer]-
+> maths...
+
+$$
+y = a_1 \cdot x_1^2 + a_2 \cdot e^{x_2} + \dots \ + a_n \cdot x_n^3 + b
+$$
+
+
+> [!question]
+> What is Linear Regression 
+
+> [!Answer]-
+> Relationship is a straight line equation.
+> Observational data are modeled by a function that is a linear combination of model parameters.
+
+
+
+> [!question]
+> In the regression equation, what does $b$ represent?
+
+> [!Answer]-
+> The constant $y$ intercept technically, also called the "Bias" term.
+
+
+
+> [!question]
+> What is Nonlinear Regression?
+
+> [!Answer]-
+> The relationship between independent and dependent variables has a nonlinear relationship!
+> Observational data are modeled by a function that is a non-linear combination of model parameters.
+
+
+
+> [!question]
+> Explain simply the objective of regression analysis.
+
+> [!Answer]-
+> The objective is to find the optimum value of coefficients in the regression equation.
+
+
+
+> [!question]
+> What is $y$ and what is $\hat{y}$? You can specify in terms of simple linear regression.
+
+> [!Answer]-
+> maths
+> But $y$ is calculated values and $\hat{y}$ are the real values, they are from the dataset.
+
+$$
+\begin{align}
+y &= a \cdot x + b
+\\
+\hat{y} &= y + \varepsilon
+\end{align}
+$$
+
+
+
+> [!important]
+> > [!question]
+> > What are the general 4 steps of regression analysis?
+
+> [!Answer]-
+> 1. Model Selection
+> 	1. choose the relationship of independent and dependent.
+> 	2. is it linear, nonlinear, simple, multiple, etc...
+> 2. Model Fitting
+> 	1. finding the unknown coefficients.
+> 3. Model Prediction
+> 	1. model is applied to estimate target variables on unseen data.
+> 4. Model Evaluation
+> 	1. Check how close the model's predictions were to desired target values. 
+
+
+#here
+
+> [!question]
+> what is the is the minimization strategy?
 
 > [!Answer]-
 > 
@@ -1237,19 +1931,111 @@ Q.) What are regularization approaches in regression analysis?
 
 
 > [!question]
-> ?
+> Define what the Residue is.
 
 > [!Answer]-
 > 
 
+
+
+> [!question]
+> What is the evaluation metric for simple regression model?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What is the mathematical definition of Sum of Squared Errors (SSE)?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> Can you solve for $a$ and $b$ in simple regression?
+
+> [!danger]
+> Probably too mathy for the exam.
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What is the "Coefficient of Determination"?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> More specifically, what does $R^2$ measure?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What is the range of values for $R^2$?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What is the "Test of Linearity"?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What happens if the Test of Linearity fails? What are our next steps?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
 
 ## 3.2. Logistic Regression
 
+p. 71;
+
 
 > [!question]
 > ?
 
 > [!Answer]-
+
+
+
+> [!question]
+> ?
+
+> [!Answer]-
+> 
 
 
 
@@ -1262,10 +2048,536 @@ Q.) What are regularization approaches in regression analysis?
 
 
 > [!question]
-> ?
+> 
 
 > [!Answer]-
 > 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
 
 
 
@@ -1298,6 +2610,542 @@ Q.) What are regularization approaches in regression analysis?
 
 
 
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+
+
 ## 3.4. Regularization in Regression Analysis
 
 
@@ -1322,6 +3170,542 @@ Q.) What are regularization approaches in regression analysis?
 
 > [!Answer]-
 > 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
 
 
 
@@ -1352,8 +3736,545 @@ Q.) What are regularization approaches in regression analysis?
 
 
 
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+
 # Unit 4. Support Vector Machines
 
+- [ ] Go through the slides
 
 > [!question]
 > ?
@@ -1402,6 +4323,542 @@ Q.) What are regularization approaches in regression analysis?
 > 
 
 
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+
 ## 4.2. SVM for Classification
 
 > [!question]
@@ -1424,6 +4881,542 @@ Q.) What are regularization approaches in regression analysis?
 
 > [!Answer]-
 > 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
 
 
 ## 4.3. SVM for Regression
@@ -1451,7 +5444,545 @@ Q.) What are regularization approaches in regression analysis?
 > 
 
 
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> 
+
+> [!Answer]-
+> 
+
+
+
+
+
 # Unit 5. Decision Trees
+
+- [ ] Go through the slides
 
 Q.) What is a decision Tree?
 
@@ -2409,6 +6940,8 @@ Q.) What is the Extreme Gradient Boosting method?
 
 # Unit 6. Genetic Algorithms
 
+- [ ] Go thru slides.
+
 > [!info]
 > What to learn:
 > - The motivation for genetic algorithms.
@@ -3111,3 +7644,5 @@ $$
 
 > [!Answer]-
 > 
+
+
