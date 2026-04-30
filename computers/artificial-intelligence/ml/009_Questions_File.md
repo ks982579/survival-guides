@@ -1920,13 +1920,24 @@ $$
 > 	1. Check how close the model's predictions were to desired target values. 
 
 
-#here
 
 > [!question]
 > what is the is the minimization strategy?
 
 > [!Answer]-
-> 
+> MATH
+
+$$
+\begin{align}
+y &= mx + b
+\\
+\hat{y} - \epsilon &= mx + b
+\\
+\hat{y} &= mx + b + \epsilon
+\end{align}
+$$
+
+The goal is to find $m$ and $b$ such that $\epsilon$ is minimized. 
 
 
 
@@ -1934,7 +1945,12 @@ $$
 > Define what the Residue is.
 
 > [!Answer]-
-> 
+> The difference between predicted value and actual observation.
+> The small amount that remains after the main part has been taken away.
+
+$$
+\varepsilon = y - \hat{y}
+$$
 
 
 
@@ -1942,7 +1958,8 @@ $$
 > What is the evaluation metric for simple regression model?
 
 > [!Answer]-
-> 
+> The sum of squared residues or sum of squared errors.
+> It is what we aim to minimize. 
 
 
 
@@ -1950,7 +1967,15 @@ $$
 > What is the mathematical definition of Sum of Squared Errors (SSE)?
 
 > [!Answer]-
-> 
+> Math
+
+$$
+\begin{align}
+\mathbf{SSE} &= \sum(\hat{y} - y)^2
+\\
+&= \sum(\hat{y} - (a \cdot x + b))^2
+\end{align}
+$$
 
 
 
@@ -1961,7 +1986,18 @@ $$
 > Probably too mathy for the exam.
 
 > [!Answer]-
-> 
+> Yes, partial derivatives.
+
+$$
+\begin{align}
+\begin{array}{ccc}
+\frac{\partial \mathbf{SSE}}{\partial a} = 0 & \text{and} & \frac{\partial \mathbf{SSE}}{\partial b} = 0
+\end{array}
+\\
+\frac{\partial \mathbf{SSE}}{\partial b} \mathbf{SSE} &= 
+\dots
+\end{align}
+$$
 
 
 
@@ -1969,7 +2005,8 @@ $$
 > What is the "Coefficient of Determination"?
 
 > [!Answer]-
-> 
+> $R$ ($R^2$ is the value) in statistics is the measure of the strength of the relationship between two variables.
+> It is employed to gauge the quality of fit of the derived regression relationship.
 
 
 
@@ -1977,7 +2014,8 @@ $$
 > More specifically, what does $R^2$ measure?
 
 > [!Answer]-
-> 
+> It describes proportion of variance in dependent variables explained by the independent variable. 
+> If correlation is strong, a robust implementation can be achieved. 
 
 
 
@@ -1985,15 +2023,48 @@ $$
 > What is the range of values for $R^2$?
 
 > [!Answer]-
-> 
+> Usually between 0-1, but I am reading from [DataCamp](https://www.datacamp.com/tutorial/coefficient-of-determination) that it can be negative, in which case the model is doing worse than guessing. 
 
+
+
+
+> [!question]
+> What is the formula definition for the Coefficient of Determination?
+
+> [!warning]
+> I did not find formula in course text.
+
+> [!Answer]-
+> Maths
+
+$$
+\begin{align}
+R^2 &= 1 - \frac{RSS}{TSS}
+\\
+RSS &= \sum_{i=1}^n{\left( y_i - \hat{y_i} \right)}^2
+\\
+TSS &= \sum_{i=1}^n{\left( y_i - \bar{y_i} \right)}^2
+\end{align}
+$$
+
+RSS is the Residual Sum of Squares, which measures how far the actual values are from the predicted values made by the model. 
+
+TSS is the Total Sum of Squares, which is the total variation in the observed data. It tells us how far the actual values are from the average (mean) of the dependent variable.
+
+The smaller the residuals then the better the model fits the data, and the closer $R^2$ gets to 1.
+
+source: https://www.datacamp.com/tutorial/coefficient-of-determination
+
+got me looking at [Correlation | Wiki](https://en.wikipedia.org/wiki/Correlation) for a moment - brings back the good ol'days.
 
 
 > [!question]
 > What is the "Test of Linearity"?
 
 > [!Answer]-
-> 
+> For a developed model to satisfy the linearity assumption, it should pass the test of linearity. 
+> Resultant $\varepsilon$ should be small with respect to specific thresholds. 
+> There also should be no significant pattern for distribution of $\varepsilon$ values. Else, test for linearity fails. 
 
 
 
@@ -2001,23 +2072,16 @@ $$
 > What happens if the Test of Linearity fails? What are our next steps?
 
 > [!Answer]-
-> 
+> This is indicative that the data is non-linear and a nonlinear model should be investigated to better represent the dataset. 
 
 
 
 > [!question]
-> 
+> What to do in the case when a linear regression fails to fit a linear model but with strong correlation from the independent and dependent variable(s)? 
 
 > [!Answer]-
-> 
+> Use a nonlinear technique like polynomial regression to correlate the data variables in a curvilinear model. 
 
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
 
 ## 3.2. Logistic Regression
 
@@ -2025,560 +2089,119 @@ p. 71;
 
 
 > [!question]
-> ?
+> What is Logistic Regression
 
 > [!Answer]-
+> A statistical model that uses a logistic function to model a binary dependent variable.
 
 
 
 > [!question]
-> ?
+> What assumptions does simple and multiple Linear Regression make?
 
 > [!Answer]-
-> 
+> Assumes:
+> - A continuous dependent variable w/added noise that follows a normal distribution.
+> - Constant variance.
 
 
 
 > [!question]
-> ?
+> What distribution can logistic regression represent?
 
 > [!Answer]-
-> 
+> It can represent a Binomial distribution with categorical values. 
 
 
 
 > [!question]
-> 
+> How does Logistic Regression relate to Linear Regression?
 
 > [!Answer]-
-> 
+> They say it's an extension of linear regression
 
 
 
 > [!question]
-> 
+> What does Logistic Regression do? What is it's function? What will we set out to do with a model when built?
 
 > [!Answer]-
-> 
+> it can classify input data records into sets of given categories or discrete values to form dependent variables.
 
 
 
 > [!question]
-> 
+> What popular example does the book mention?
 
 > [!Answer]-
-> 
+> Loan prediction (approval/rejection). 
 
 
 
 > [!question]
-> 
+> What is the range of values for logistic regression? 
 
 > [!Answer]-
-> 
+> $y$ is continuous range of values $[0,1]$ (inclusive); however, it will never actually produce a 0 nor 1. 
 
 
 
 > [!question]
-> 
+> Where does rationale for logistic regression come from?
 
 > [!Answer]-
-> 
+> It is based on the "Odds Ratio".
 
 
 
 > [!question]
-> 
+> What is the "Odds Ratio"?
 
 > [!Answer]-
-> 
+> It is the odds of a specific event occurring and defined as the probability of an event occurring divided by probability of it not occurring.
 
+$$
+O[y=1] = \frac{P[y=1]}{1-P[y=1]}
+$$
 
 
 > [!question]
-> 
+> What is the maximum likelihood function for logistic regression?
 
 > [!Answer]-
-> 
+> The maximum likelihood method generates the Logit function that predicts the natural logirithum of the odds Ratio:
 
+$$
+\log{\left(
+\frac{p}{1-p}
+\right)} = a \cdot x + b
+$$
 
 
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
 
 > [!question]
-> 
+> What is the "Logit"?
 
 > [!Answer]-
-> 
+> I wrote "Log Odds". 
 
 
 
 > [!question]
-> 
+> What is the logistic regression equation?
 
 > [!Answer]-
-> 
+> Maths?
 
+$$
+p(y) = \frac{
+1
+}{
+1 + e^{-(a \cdot x + b)}
+}
+$$
 
+It is a probability function (of sorts).
 
 
 
@@ -2587,563 +2210,87 @@ p. 71;
 
 
 > [!question]
-> ?
+> What is Quantile Regression?
 
 > [!Answer]-
+> It is an extension on linear regression used when conditions of linear regression are not met!
+> [Quantile Regression | Wiki](https://en.wikipedia.org/wiki/Quantile_regression): Type of regression analysis that estimates the conditional quantile of the response variable. 
 
 
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
 > [!question]
-> 
+> Are model coefficients constant across all data records in Classical Linear Regression?
 
 > [!Answer]-
-> 
+> Yes, given the formula, you see the coefficients are the same across the entire model. 
 
 
 
 > [!question]
-> 
+> In a short answer, how does one obtain the coefficients (what is that process called)?
 
 > [!Answer]-
-> 
+> Minimizing the Sum of Squares of the Residuals.
 
 
 
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
 
-
-
 > [!question]
-> 
+> Is the assumption that the coefficients are static a good assumption for all datasets? 
 
 > [!Answer]-
-> 
+> No, this is why we have quantile regression.
 
 
 
 > [!question]
-> 
+> For what kind of data would the assumption of constant coefficient not hold true? Name some cases!
 
 > [!Answer]-
-> 
+> When the data is:
+> - Skewed data
+> - Multi modal data
+> - Data with Outliers
 
 
 
 > [!question]
-> 
+> How does one better Approach data where the average change in $y$ fails to be captured completely (or adequately) by the underlying Data?
 
 > [!Answer]-
-> 
+> With quantile regression of course. 
+> Divide dependent variables into segments (ie quantiles) from its lowest value to the highest value and develop linear regression model for each quantile. 
+> Basically, separate regressions based on value. 
 
 
 
 > [!question]
-> 
-
-> [!Answer]-
-> 
-
-
+> What is the objective of Quantile Regression?
 
-> [!question]
-> 
+> [!hint]
+> Objectives seem to be based in the process, like the min-max process.
 
 > [!Answer]-
-> 
-
-
+> To minimize a "weighted" sum of absolute errors at each quantile of the dependent variable. 
 
-> [!question]
-> 
+$$
+\mathbf{min}\left(
+\tau \sum_{y_i \gt \tau} |\hat{y} - y|
++
+(1-\tau) \sum_{y_i \lt \tau} |\hat{y} - y|
+\right)
+$$
 
-> [!Answer]-
-> 
+That is, sum of segments above and below tau; where tau is the quantile level. The exact definition might be slightly different, that that is the jist.
 
 
 
 > [!question]
-> 
+> Is quantile regression just another way of doing linear regression?
 
 > [!Answer]-
-> 
-
-
-
-
+> Kind of - It answers a fundamentally different question that Ordinary Least Squares (OLS) though. 
+> While OLS tries to solve; Where is the mean of $y$ given value $x$?
+> Quantile regression tries to solve; Where is the $\tau^{\text{th}}$ quantile of $y$ given $x$?
 
 
 ## 3.4. Regularization in Regression Analysis
@@ -3151,1125 +2298,144 @@ p. 71;
 
 
 > [!question]
-> ?
+> What is the goal of Regression and how is it achieved?
 
 > [!Answer]-
+> The goal is to develop the best fit between independent and dependent variables. This is done by minimizing a loss function and/or maximizing $R^2$. 
 
 
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
 > [!question]
-> 
+> What kind of data points / records can lead to incorrect regression models?
 
 > [!Answer]-
-> 
+> Outliers.
 
 
 
 > [!question]
-> 
+> What does overfitting do to a model?
 
 > [!Answer]-
-> 
-
-
-
-> [!question]
-> 
+> It occurs when the model overtrains on training data to a point where it cannot generalize on non-training data. 
 
-> [!Answer]-
-> 
 
 
 
 > [!question]
-> 
+> And how does one avoid issues of overfitting and outliers to build more robust regression models?
 
 > [!Answer]-
-> 
-
+> We can penalize the loss function by adding a Penalty term to the regression model. 
 
 
 
 > [!question]
-> 
+> What is the Penalty term called in the regression model?
 
 > [!Answer]-
-> 
+> Such a penalty is known as regularization.
 
 
 
 > [!question]
-> 
+> what are 2 common forms of regression regularization?
 
 > [!Answer]-
-> 
+> 1. Lasso Regularization ($L_1$ regularization)
+> 2. Ridge Regularization ($L_2$ regularization)
 
 
 
 > [!question]
-> 
+> How does Ridge Regression Work?
 
 > [!Answer]-
-> 
+> Regularization adds a penalty term to the loss function that penalizes the sum of squares of the model coefficients.
 
+$$
+\mathbf{SSE} = \sum_{i=1}^n{\left(
+(\hat{y} - y)^2
+\right)} + \lambda \sum{W^2}
+$$
+Where:
+- lambda is a constant that controls the level of penalty.
+- W stands for the model coefficients.
 
 
 > [!question]
-> 
+> What does large values of lambda do to this Ridge Regression? Tell me a trade-off.
 
 > [!Answer]-
-> 
+> Higher values of lambda puts a greater emphasis on reduction of the coefficients magnitudes. The trade-of is that you must tolerate higher residuals.
 
 
 
 > [!question]
-> 
+> What is the result of Ridge Regression, if you could summarize in a few words.
 
 > [!Answer]-
-> 
+> This helps to keep coefficients smaller, which helps prevent certain terms from being too sensitive to change. 
 
 
 
 > [!question]
-> 
+> Why are Smaller Regression Coefficients more desirable?
 
 > [!Answer]-
-> 
+> Large coefficients makes model very sensitive to small changes of input. Forcing smaller coefficients means smoother and more stable models that generalize better. 
 
 
 
 > [!question]
-> 
+> How does one determine the Lambda hyperparameter in Ridge Regression?
 
 > [!Answer]-
-> 
+> 1. Genetic Algorithms are perfect but complex.
+> 2. Cross-Validation is most common approach.
+> 3. Generalized loss validation is a more analytical solution.
+> 4. Bayesian Interpretation.
 
 
 
 > [!question]
-> 
+> What is Lasso Regression?
 
 > [!Answer]-
-> 
+> The objective is to minimize sum of absolute values of coefficients.
 
-
-
-> [!question]
-> 
+$$
+\mathbf{SSE} = \sum_{i=1}^n{\left(
+(\hat{y} - y)^2
+\right)} + \lambda \sum |W|
+$$
 
-> [!Answer]-
-> 
+Where:
+- lambda is a constant that controls the level of penalty.
+- W stands for the model coefficients.
 
 
 
 > [!question]
-> 
+> Are Results of Lasso Regularization similar to those of Ridge? Why or why not?
 
 > [!Answer]-
-> 
+> They can differ remarkably because both large and small coefficients are addressed and driven down in Lasso Regression.
+> Squaring the coefficients in Ridge regression puts emphasis on large value.
+> Additionally, Lasso Regression preferentially sets some model coefficients to exactly zero, thus favoring sparse models where possible.
 
 
 
 > [!question]
-> 
+> What kind of models are favorable to Lasso Regression and Why?
 
 > [!Answer]-
-> 
-
-
-
-
-
+> Favors Sparse models because preferentially sets some model coefficients to exactly ZERO.
 
 ## 3.5. Regression Analysis in Python
 
 
-> [!question]
-> ?
-
-> [!Answer]-
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
+> [!info]
+> Not adding Python question
 
 
 # Unit 4. Support Vector Machines
@@ -4277,14 +2443,14 @@ p. 71;
 - [ ] Go through the slides
 
 > [!question]
-> ?
+> What is Support Vector Machine model?
 
 > [!Answer]-
 
 
 
 > [!question]
-> ?
+> What is meant by the term hyperplane?
 
 > [!Answer]-
 > 
@@ -4292,7 +2458,47 @@ p. 71;
 
 
 > [!question]
-> ?
+> How is a Hyperplane Represented?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What does it mean to be linearly seperable data?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What is nonlinarly sperable data?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What is a Kernel function?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> How to use a kernel function in SVM algorithm?
+
+> [!Answer]-
+> 
+
+
+
+> [!question]
+> What is the Kernel Trick?
 
 > [!Answer]-
 > 
@@ -4301,688 +2507,215 @@ p. 71;
 
 ## 4.1. Introduction to Support Vector Machines
 
-> [!question]
-> ?
-
-> [!Answer]-
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
+p. 88;
 
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
 > [!question]
-> 
+> At a high level, how to define a Support Vector Machine (SVM)?
 
 > [!Answer]-
-> 
+> It is a mathematical model within the class of supervised machine learning algorithms. 
+> They are supervised 'max-margin' models for classification and regression. 
 
+sources:
+- https://www.geeksforgeeks.org/machine-learning/support-vector-machine-algorithm/
+- https://en.wikipedia.org/wiki/Support_vector_machine
 
 
 > [!question]
-> 
+> What domains is SVM typically used?
 
 > [!Answer]-
-> 
+> Various Domains that require high discrimination power.
+> Used in decision making applications that requires accurate classification and prediction algorithms.
 
 
 
-
 > [!question]
-> 
+> In terms of properties, where does SVM operate? Continuous data or categorical data? Linear or nonlinear problems.
 
 > [!Answer]-
-> 
+> SVM can operate in:
+> - both continuous and categorical data.
+> - both linear and nonlinear problems.
 
 
 
 > [!question]
-> 
+> What is "Real-life data"?
 
 > [!Answer]-
-> 
+> Data retrieved by various sources like sensors, surveys, and observations in practical application scenarios. 
 
 
 
 > [!question]
-> 
+> What is a Support Vector Machine?
 
 > [!Answer]-
-> 
+> It is basically a binary classifier that maps entities to one or two possible output spaces. 
 
 
 
 > [!question]
-> 
+> What assumptions does SVM make?
 
 > [!Answer]-
-> 
+> Assumes:
+> 1. entities can be represented as a set of points in a multi-dimensional space where each dimension corresponds to one of the entities properties. 
+> 2. The subspaces can be separated by subspace that has one dimension less than the overall feature space. 
 
 
 
 > [!question]
-> 
+> How many distinct classes of classification problems? 
 
 > [!Answer]-
-> 
+> 2
 
 
 
 > [!question]
-> 
+> How are classes split?
 
 > [!Answer]-
-> 
+> The split corresponds to different subspaces of the feature space that are occupied by the respective entities. 
 
 
 
 > [!question]
-> 
+> What do we call the subspace that separates classes?
 
 > [!Answer]-
-> 
+> This is the Separating Hyperplane.
 
 
 
 > [!question]
-> 
+> What does each side of the separating hyperplane represent? 
 
 > [!Answer]-
-> 
+> It represents a class of the underlying classification problem. 
 
 
 
 > [!question]
-> 
+> Where does the separating hyperplane come from?
 
 > [!Answer]-
-> 
+> It is learned / detected during the model training phase.
 
 
 
 > [!question]
-> 
+> And how is the classification of a data point determined?
 
 > [!Answer]-
-> 
+> Classification is based on the location of that point corresponding to the instance relative to the learned hyperplane. Which side the point is on determines which class is assigned to it. 
 
 
 
 > [!question]
-> 
+> What is a Hyperplane?
 
 > [!Answer]-
-> 
-
+> A subspace where dimension is one less than that of the ambient space.
+> In SVM, the hyperplane separates classifications - it lies in the Gap between classes.
 
 
 
 > [!question]
-> 
+> What is the Margin?
 
 > [!Answer]-
-> 
-
-
-
-> [!question]
-> 
+> The gap between classes.
+> It is the distance between closest instances of different classes.
 
-> [!Answer]-
-> 
 
 
 
 > [!question]
-> 
+> What are Support Vectors?
 
 > [!Answer]-
-> 
+> These are the closest instances that determine the Margin.
 
 
 
 > [!question]
-> 
-
-> [!Answer]-
-> 
+> What is the Goal of SVM?
 
+> [!hint]
+> Goals typically want min-max objective. 
 
-
-> [!question]
-> 
-
 > [!Answer]-
-> 
+> The goal is to detect, or learn, the hyperplane that MAXIMIZES the width of the margin.
 
 
 
 > [!question]
-> 
+> How does one determine the width of the margin?
 
 > [!Answer]-
-> 
+> It is measured based on the perpendicual distance from the separating hyperplane to the support vector. 
+> So, the full width of the Gap would be 2 margins.
 
 
 
 > [!question]
-> 
+> Is the SVM algorithm memory efficient? Why or why not?
 
 > [!Answer]-
-> 
+> Yes it is, it only uses a subset of the training points, the support vectors, in classification of test instances. 
 
 
 
 > [!question]
-> 
+> What does a large margin ensure?
 
 > [!Answer]-
-> 
+> It ensures good generalization of classifying algorithm in discrimination between instances of 2 classes.
 
 
 
 > [!question]
-> 
+> What is the purpose of the Hyperplane in SVM?
 
 > [!Answer]-
-> 
+> It forms a space that separates the instances of different classes.
+> In $n$-dimensional space, the hyperplane is ($n-1$)-dimensions.
 
 
 
 > [!question]
-> 
+> What do the dimensions in SVM represent?
 
 > [!Answer]-
-> 
+> Each dimension represents a feature, or characteristic, of the classification instance.
 
 
 
 > [!question]
-> 
+> How can we usually visualize the feature space?
 
 > [!Answer]-
-> 
-
-
+> We cannot typically visualize the feature space in most real-life problems because instances are usually characterized by hundreds of features making them impossible to visualize. 
 
 
 
 ## 4.2. SVM for Classification
 
-> [!question]
-> ?
-
-> [!Answer]-
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> ?
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
-
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
+p. 91;
 
-
 > [!question]
-> 
+> Provide a short definition of SVM please.
 
 > [!Answer]-
-> 
+> It is a linear binary classifier in the supervised learning paradigm.
 
+#here
 
-
 > [!question]
-> 
+> Why is SVM a "binary" Classifier?
 
 > [!Answer]-
 > 
@@ -4990,7 +2723,7 @@ p. 71;
 
 
 > [!question]
-> 
+> Why use the term "linear" when describing SVM?
 
 > [!Answer]-
 > 
@@ -4998,7 +2731,7 @@ p. 71;
 
 
 > [!question]
-> 
+> When are problem instances Linearly Separable?
 
 > [!Answer]-
 > 
@@ -5006,7 +2739,7 @@ p. 71;
 
 
 > [!question]
-> 
+> What is a "Hard Margin"?
 
 > [!Answer]-
 > 
@@ -5014,7 +2747,7 @@ p. 71;
 
 
 > [!question]
-> 
+> What is the decision function $f(x)$ for a data set with multiple features?
 
 > [!Answer]-
 > 
@@ -5022,23 +2755,18 @@ p. 71;
 
 
 > [!question]
-> 
-
-> [!Answer]-
-> 
+> Once we have a decision function, how does classification work?
 
+> [!hint]
+> Think in terms of results from decision function.
 
-
-> [!question]
-> 
-
 > [!Answer]-
 > 
 
 
 
 > [!question]
-> 
+> What is the input **training dataset** of an SVM classifier?
 
 > [!Answer]-
 > 
@@ -5046,24 +2774,18 @@ p. 71;
 
 
 > [!question]
-> 
-
-> [!Answer]-
-> 
-
+> What is the output of SVM after training?
 
+> [!hint]
+> Quick description of the model.
 
-> [!question]
-> 
-
 > [!Answer]-
 > 
-
 
 
 
 > [!question]
-> 
+> What happens when we re-scale feature samples?
 
 > [!Answer]-
 > 
@@ -5071,7 +2793,7 @@ p. 71;
 
 
 > [!question]
-> 
+> How do we want to transform the support vectors? Why?
 
 > [!Answer]-
 > 
@@ -5079,23 +2801,18 @@ p. 71;
 
 
 > [!question]
-> 
-
-> [!Answer]-
-> 
+> What is the distances between 2 marginal hyperplanes (margin width)? 
 
+> [!hint]
+> Different than what it sounds.
 
-
-> [!question]
-> 
-
 > [!Answer]-
 > 
 
 
 
 > [!question]
-> 
+> What is the Goal / Objective for SVM analysis? What problem is it solving during the training process?
 
 > [!Answer]-
 > 
@@ -5103,31 +2820,26 @@ p. 71;
 
 
 > [!question]
-> 
+> Mathematically define the optimization problem please. 
 
 > [!Answer]-
-> 
-
-
-
-> [!question]
 > 
 
-> [!Answer]-
-> 
 
 
 
 > [!question]
-> 
+> What is the assumption made regarding a hard margin?
 
 > [!Answer]-
 > 
 
 
+> [!abstract]
+> We are now heading towards nonlinear separability. 
 
 > [!question]
-> 
+> What is Primal Form, or Soft Margin, for SVM?
 
 > [!Answer]-
 > 
@@ -5135,7 +2847,7 @@ p. 71;
 
 
 > [!question]
-> 
+> Why would we use a Soft Margin in SVM?
 
 > [!Answer]-
 > 
@@ -5143,16 +2855,15 @@ p. 71;
 
 
 > [!question]
-> 
+> How does Primal Form work? 
 
 > [!Answer]-
 > 
 
 
 
-
 > [!question]
-> 
+> Explain what "Slack Error" represents.
 
 > [!Answer]-
 > 
@@ -5160,7 +2871,7 @@ p. 71;
 
 
 > [!question]
-> 
+> What is the formula of the Loss Function when considering Primal Form?
 
 > [!Answer]-
 > 
@@ -5168,7 +2879,7 @@ p. 71;
 
 
 > [!question]
-> 
+> How is the "Primal Form" defined?
 
 > [!Answer]-
 > 
@@ -5176,7 +2887,7 @@ p. 71;
 
 
 > [!question]
-> 
+> How do we "relax" the hard margin to state Primal Form of Soft Margin?
 
 > [!Answer]-
 > 
@@ -5184,7 +2895,7 @@ p. 71;
 
 
 > [!question]
-> 
+> For Primal Form SVM, what is the tradeoff with the penalty parameter $C$?
 
 > [!Answer]-
 > 
@@ -5192,7 +2903,7 @@ p. 71;
 
 
 > [!question]
-> 
+> Can SVM handle Non-Linearly Seperable Data?
 
 > [!Answer]-
 > 
@@ -5200,23 +2911,16 @@ p. 71;
 
 
 > [!question]
-> 
+> What is an idea to work with Non-Linearly Seperable Data?
 
 > [!Answer]-
-> 
-
-
-
-> [!question]
 > 
 
-> [!Answer]-
-> 
 
 
 
 > [!question]
-> 
+> What does Transformation typically require for Primal Form SVM? 
 
 > [!Answer]-
 > 
@@ -5224,7 +2928,7 @@ p. 71;
 
 
 > [!question]
-> 
+> In terms of Mapping, what is a transformation doing?
 
 > [!Answer]-
 > 
@@ -5232,16 +2936,15 @@ p. 71;
 
 
 > [!question]
-> 
+> What problem does data transformation solve for Primal Form SVM?
 
 > [!Answer]-
 > 
 
 
 
-
 > [!question]
-> 
+> What issues does data transformation suffer from regarding Primal form SVM?
 
 > [!Answer]-
 > 
@@ -5249,7 +2952,7 @@ p. 71;
 
 
 > [!question]
-> 
+> How do we do a data transform for SVM?
 
 > [!Answer]-
 > 
@@ -5257,7 +2960,7 @@ p. 71;
 
 
 > [!question]
-> 
+> What is the Kernel Trick?
 
 > [!Answer]-
 > 
@@ -5265,7 +2968,7 @@ p. 71;
 
 
 > [!question]
-> 
+> Why do we use the Kernel Trick?
 
 > [!Answer]-
 > 
@@ -5273,7 +2976,7 @@ p. 71;
 
 
 > [!question]
-> 
+> How do we use the Kernel Trick?
 
 > [!Answer]-
 > 
@@ -5281,7 +2984,7 @@ p. 71;
 
 
 > [!question]
-> 
+> Mathematically, what is the optimization problem to solve with the Kernel Trick?
 
 > [!Answer]-
 > 
@@ -5289,7 +2992,7 @@ p. 71;
 
 
 > [!question]
-> 
+> What is the mathematical definition of a Feature Space? 
 
 > [!Answer]-
 > 
@@ -5297,23 +3000,16 @@ p. 71;
 
 
 > [!question]
-> 
+> What can Kernel functions be an indicator of in SVM? How do they indicate this?
 
 > [!Answer]-
-> 
-
-
-
-> [!question]
 > 
 
-> [!Answer]-
-> 
 
 
 
 > [!question]
-> 
+> What is the SVM Kernel Trick?
 
 > [!Answer]-
 > 
@@ -5321,16 +3017,15 @@ p. 71;
 
 
 > [!question]
-> 
+> Why do we use the Kernel Trick in SVM?
 
 > [!Answer]-
 > 
-
 
 
 
 > [!question]
-> 
+> How does the Kernel Trick apply to Linearly Seperable data?
 
 > [!Answer]-
 > 
@@ -5338,7 +3033,7 @@ p. 71;
 
 
 > [!question]
-> 
+> What is the Mathematical Form of a Linear Kernel Function?
 
 > [!Answer]-
 > 
@@ -5346,7 +3041,7 @@ p. 71;
 
 
 > [!question]
-> 
+> How does the Kernel Trick apply to non-linearly seperable data problems?
 
 > [!Answer]-
 > 
@@ -5354,7 +3049,7 @@ p. 71;
 
 
 > [!question]
-> 
+> What are the names of some nonlinear Kernel functions?
 
 > [!Answer]-
 > 
@@ -5362,7 +3057,7 @@ p. 71;
 
 
 > [!question]
-> 
+> How do we choose a Kernel function for a dataset?
 
 > [!Answer]-
 > 
@@ -5370,7 +3065,7 @@ p. 71;
 
 
 > [!question]
-> 
+> Mathematically, please define the Polynomial Kernel Function
 
 > [!Answer]-
 > 
@@ -5378,7 +3073,7 @@ p. 71;
 
 
 > [!question]
-> 
+> Mathematically, please define the Gaussian Kernel Function
 
 > [!Answer]-
 > 
@@ -5386,6 +3081,7 @@ p. 71;
 
 
 > [!question]
+> Mathematically, please define the Exponential Kernel Function
 > 
 
 > [!Answer]-
@@ -5394,6 +3090,7 @@ p. 71;
 
 
 > [!question]
+> Mathematically, please define the Laplacian Kernel Function
 > 
 
 > [!Answer]-
@@ -5401,36 +3098,25 @@ p. 71;
 
 
 
-> [!question]
-> 
-
-> [!Answer]-
-> 
-
-
 
 > [!question]
+> Mathematically, please define the Sigmoid Kernel Function
 > 
-
-> [!Answer]-
-> 
-
-
-
-
 
 ## 4.3. SVM for Regression
 
+p. 100;
+
 
 > [!question]
-> ?
+> 
 
 > [!Answer]-
 
 
 
 > [!question]
-> ?
+> 
 
 > [!Answer]-
 > 
@@ -5438,7 +3124,7 @@ p. 71;
 
 
 > [!question]
-> ?
+> 
 
 > [!Answer]-
 > 
@@ -7646,3 +5332,5 @@ $$
 > 
 
 
+
+---
